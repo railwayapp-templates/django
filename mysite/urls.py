@@ -21,4 +21,6 @@ urlpatterns = [
 ]
 
 # This is necessary so that static files resolve properly!
+# However, this is not recommended for long term use!
+# Read for more info: https://stackoverflow.com/a/12801140
 urlpatterns += staticfiles_urlpatterns()
