@@ -27,7 +27,9 @@ SECRET_KEY = 'django-insecure-rc^*w^w&6g9_(uvx#6s*bnt!w)l0rdi%!l7mv#y%uc&x%wo5pk
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
-CSRF_TRUSTED_ORIGINS = ["*"]
+# Form Submissions
+# Comment out the following line and place your railway URL, and your production URL in the array.
+# CSRF_TRUSTED_ORIGINS = ["*"]
 
 # Application definition
 
