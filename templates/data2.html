@@ -1,0 +1,281 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+      <!-- partial -->
+      <div class="main-panel">        
+        <div class="content-wrapper">
+            <form method="POST" action="{% url 'api-data4' %}">  
+                <div class="row">
+                    <div class="col-md-6 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                            
+                                    {% csrf_token %}
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="p-2 rounded-2 bg-custom-dark mt-2 mb-3">Dates</div>
+                                            <div class="row mb-3">
+                                                <div class="col">
+                                                    <label class="form-label">Start Date</label>
+                                                </div>
+                                                <div class="col">
+                                                    <input type="date" class="form-control" name="start_date">
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <div class="col">
+                                                    <label class="form-label">End Date</label>
+                                                </div>
+                                                <div class="col">
+                                                    <input type="date" class="form-control" name="end_date">
+                                                </div>
+                                            </div>
+                                            <div class="p-2 rounded-2 bg-custom-dark mt-2 mb-3">Calculation Inputs</div>
+                                            <div class="row mb-3">
+                                                <div class="col">
+                                                    <label class="form-label">Return Calculation</label>
+                                                </div>
+                                                <div class="col">
+                                                    <select class="form-control" name="return_calculation">
+                                                        <option value="Arithmetic">Arithmetic</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <div class="col">
+                                                    <label class="form-label">Price Frequency</label>
+                                                </div>
+                                                <div class="col">
+                                                    <select class="form-control" name="price_frequency">
+                                                        <option value="Daily">Daily</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <div class="col">
+                                                    <label class="form-label">Risk Free Rate</label>
+                                                </div>
+                                                <div class="col">
+                                                    <input class="form-control" name="risk_free_rate" value="0">
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <div class="col">
+                                                    <label class="form-label">Investment Amount</label>
+                                                </div>
+                                                <div class="col">
+                                                    <input class="form-control" name="invested_amount" value="10000">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="p-2 rounded-2 bg-custom-dark mt-2 mb-3">Portfolio Optimization Inputs</div>
+                                            <div class="row mb-3">
+                                                <div class="col">
+                                                    <label class="form-label">Benchmark Portfolio</label>
+                                                </div>
+                                                <div class="col">
+                                                    <select class="form-control" name="benchmark_portfolio">
+                                                        <option value="market_cap_weight">Market Cap Weight</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <div class="col">
+                                                    <label class="form-label">TRV (Min)</label>
+                                                </div>
+                                                <div class="col">
+                                                    <input type="number" class="form-control" name="target_return_for_min_volatility" step="0.25" value="0.25">
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <div class="col">
+                                                    <label class="form-label">TRV (Max)</label>
+                                                </div>
+                                                <div class="col">
+                                                    <input type="number" class="form-control" name="target_volatility_for_max_return" step="0.25" value="0.25">
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <div class="col">
+                                                    <label class="form-label">Default Win Weight</label>
+                                                </div>
+                                                <div class="col">
+                                                    <input type="number" class="form-control" name="default_min_weight" step="1" value="0">
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <div class="col">
+                                                    <label class="form-label">Default Max Weight</label>
+                                                </div>
+                                                <div class="col">
+                                                    <input type="number" class="form-control" name="default_max_weight" step="1" value="0">
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <div class="col">
+                                                    <label class="form-label">Frontier Runs</label>
+                                                </div>
+                                                <div class="col">
+                                                    <input type="number" class="form-control" name="frontier_runs" step="1" value="0">
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <div class="col">
+                                                    <label class="form-label">MC Simulations</label>
+                                                </div>
+                                                <div class="col">
+                                                    <input type="number" class="form-control" name="monte_carlo_simulations" step="1" value="0">
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <div class="col">
+                                                    <label class="form-label">Solver</label>
+                                                </div>
+                                                <div class="col">
+                                                    <select class="form-control" name="solver">
+                                                        <option value="CLARABEL">CLARABEL</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <div class="col">
+                                                    <label class="form-label">Dendogram Segment</label>
+                                                </div>
+                                                <div class="col">
+                                                    <select class="form-control" name="dendogram_segment">
+                                                        <option value="Sector">Sector</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                    
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                            <h4 class="card-title">Horizontal Form</h4>
+                            <p class="card-description">
+                                You can type 'a'
+                            </p>
+                                <div>
+                                    <div class="ui-widget row mb-2">
+                                        <input id="tags" class="form-control col-auto" placeholder="Enter Ticker">
+                                    </div>
+                                    <div class="table-responsive" style="margin-top: 60px;">
+                                        <table class="table">
+                                            <thead class="table-dark">
+                                                <th></th>
+                                                <th>Ticker</th>
+                                                <th>Company</th>
+                                                <th>BAW</th>
+                                                <th>A Max</th>
+                                                <th>BA ($)</th>
+                                                <th>Sector</th>
+                                                <th>Market</th>
+                                            </thead>
+                                            <tbody id="companyTable">
+                                                
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+
+                            
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 grid-margin stretch-card">
+                    <div class="card">
+                        <div class="card-body">
+                            <button type="submit" class="btn btn-primary">Run Model</button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:../../partials/_footer.html -->
+        <footer class="footer">
+            <div class="d-sm-flex justify-content-center justify-content-sm-between">
+              <span class="text-center text-sm-left d-block d-sm-inline-block">Copyright © bootstrapdash.com</span>
+            </div>
+          </footer>
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+   
+    <script>
+        $(document).ready(function() {
+            // Dummy data for company list and their details
+            var companyData = {
+                "AAPL": { company: "Apple Inc.", sector: "Technology", market: "NASDAQ", baw: "10", amax: "100", ba: "145.09" },
+                "GOOGL": { company: "Alphabet Inc.", sector: "Technology", market: "NASDAQ", baw: "5", amax: "120", ba: "2729.89" },
+                "TSLA": { company: "Tesla Inc.", sector: "Automotive", market: "NASDAQ", baw: "20", amax: "200", ba: "650.89" },
+                "AMZN": { company: "Amazon.com, Inc.", sector: "Consumer", market: "NASDAQ", baw: "15", amax: "150", ba: "3450.22" },
+            };
+
+            // Extracting company tickers for autocomplete suggestions
+            var availableTags = Object.keys(companyData);
+
+            // Store selected companies
+            var selectedCompanies = [];
+
+            // Autocomplete setup
+            $("#tags").autocomplete({
+                source: function(request, response) {
+                    // Filter companies that are not already selected
+                    var filteredTags = availableTags.filter(function(tag) {
+                        return selectedCompanies.indexOf(tag) === -1 && tag.toLowerCase().startsWith(request.term.toLowerCase());
+                    });
+                    response(filteredTags);
+                },
+                select: function(event, ui) {
+                    // When a company is selected
+                    var selectedTicker = ui.item.value;
+                    var companyDetails = companyData[selectedTicker];
+
+                    // Add the selected company to the table with input fields
+                    var tableRow = `
+                        <tr>
+                            <td><button class="btn btn-danger btn-sm remove-row">Remove</button></td>
+                            <td><input type="text" name="tickers[]" class="" value="${selectedTicker}" readonly></td>
+                            <td><input type="text" class="" value="${companyDetails.company}" readonly></td>
+                            <td><input type="number" name="baw[]" class="" value="${companyDetails.baw}"></td>
+                            <td><input type="number" name="amax[]" class="" value="${companyDetails.amax}"></td>
+                            <td><input type="number" name="ba[]" class="" value="${companyDetails.ba}" readonly></td>
+                            <td><input type="text" class="" value="${companyDetails.sector}" readonly></td>
+                            <td><input type="text" class="" value="${companyDetails.market}" readonly></td>
+                        </tr>
+                    `;
+                    $("#companyTable").append(tableRow);
+
+                    // Add company to the selected companies list
+                    selectedCompanies.push(selectedTicker);
+
+                    // Clear input field
+                    $(this).val('');
+                    return false;
+                }
+            });
+
+            // Remove a company from the table and allow it to be selected again
+            $(document).on('click', '.remove-row', function() {
+                var tickerToRemove = $(this).closest('tr').find('input[name="companies[][symbol]"]').val();
+                selectedCompanies = selectedCompanies.filter(ticker => ticker !== tickerToRemove);
+                $(this).closest('tr').remove();
+            });
+        });
+    </script>
+
+
+{% endblock content %}

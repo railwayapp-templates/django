@@ -1,0 +1,516 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Modernize Free</title>
+  <link rel="shortcut icon" type="image/png" href="../assets/images/logos/favicon.png" />
+  <link rel="stylesheet" href="{% static 'css/styles.min.css' %}" />
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        .line {
+            fill: none;
+            stroke: steelblue;
+            stroke-width: 2px;
+        }
+        .circle-runs {
+            fill: steelblue;
+        }
+        .circle-positions {
+            fill: orange;
+        }
+        .tooltip {
+            position: absolute;
+            text-align: center;
+            padding: 5px;
+            font: 12px sans-serif;
+            background: lightsteelblue;
+            border: 1px solid steelblue;
+            border-radius: 5px;
+            pointer-events: none;
+            opacity: 1; /* Always visible */
+            transition: opacity 0.2s; /* Smooth transition */
+        }
+    </style>
+</head>
+
+<body>
+  <!--  Body Wrapper -->
+  <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed">
+    
+    <aside class="left-sidebar">
+        <!-- Sidebar scroll-->
+        <div>
+          <div class="brand-logo d-flex align-items-center justify-content-between">
+            <a href="./index.html" class="text-nowrap logo-img">
+              <img src="../assets/images/logos/dark-logo.svg" width="180" alt="" />
+            </a>
+            <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
+              <i class="ti ti-x fs-8"></i>
+            </div>
+          </div>
+          <!-- Sidebar navigation-->
+          <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
+            <ul id="sidebarnav">
+              <li class="nav-small-cap">
+                <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                <span class="hide-menu">Home</span>
+              </li>
+              <li class="sidebar-item">
+                <a class="sidebar-link" href="/" aria-expanded="false">
+                  <span>
+                    <i class="ti ti-layout-dashboard"></i>
+                  </span>
+                  <span class="hide-menu">Dashboard</span>
+                </a>
+              </li>
+              
+             
+              
+          </nav>
+          <!-- End Sidebar navigation -->
+        </div>
+        <!-- End Sidebar scroll-->
+      </aside>
+      <!--  Sidebar End -->
+      <!--  Main wrapper -->
+      <div class="body-wrapper">
+        <!--  Header Start -->
+        <header class="app-header">
+          <nav class="navbar navbar-expand-lg navbar-light">
+            <ul class="navbar-nav">
+              <li class="nav-item d-block d-xl-none">
+                <a class="nav-link sidebartoggler nav-icon-hover" id="headerCollapse" href="javascript:void(0)">
+                  <i class="ti ti-menu-2"></i>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link nav-icon-hover" href="javascript:void(0)">
+                  <i class="ti ti-bell-ringing"></i>
+                  <div class="notification bg-primary rounded-circle"></div>
+                </a>
+              </li>
+            </ul>
+            <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
+              <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
+                <li class="nav-item dropdown">
+                  <a class="btn btn-danger m-1" href="/logout">Logout</a>
+                 
+                </li>
+              </ul>
+            </div>
+          </nav>
+        </header>
+        <!--  Header End -->
+        <div class="container-fluid">
+          <!--  Row 1 -->
+          <div class="row">
+            <div class="col-lg-12 d-flex align-items-strech">
+              <div class="card w-100">
+                <div class="card-body">
+                      
+                    <div>
+                      <svg width="500" height="300"></svg>
+                      <div class="tooltip" style="opacity: 1;"></div>
+                    </div>
+                    
+                    <div>
+                      <h1>Strategy Data</h1>
+
+                        <table class="table">
+                          <thead class="table-dark">
+                            <tr>
+                              <th>Run</th> <!-- Row number column -->
+                              <th>Expected Return (%)</th> <!-- Updated Header -->
+                              <th>Standard Deviation (%)</th> <!-- Updated Header -->
+                              <th>Sharpe Ratio</th>
+                          </tr>
+                          </thead>
+                          <tbody>
+                            {% for item in table_data %}
+                                <tr>
+                                    <td>{{ forloop.counter }}</td> <!-- Row number -->
+                                    <td>{{ item.exp_return|floatformat:2 }}%</td> <!-- Format as percentage -->
+                                    <td>{{ item.std_dev|floatformat:2 }}%</td> <!-- Format as percentage -->
+                                    <td>{{ item.sharpe_ratio|floatformat:2 }}</td>
+                                </tr>
+                            {% empty %}
+                                <tr>
+                                    <td colspan="3">No data available</td>
+                                </tr>
+                            {% endfor %}
+                          </tbody>
+                        </table>
+
+                    </div>
+
+                </div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+
+  </div>
+  <script src="{% static 'js/jquery.min.js' %}"></script>
+  <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+  <script>
+    // Data
+    const frontier_runs = {
+        x: [
+            0.26216293188246886,
+            0.26221727444832876,
+            0.26232650496115933,
+            0.2624905189701973,
+            0.26270923623552445,
+            0.26298246885798027,
+            0.26331010301463714,
+            0.2636919165782766,
+            0.26412767302308604,
+            0.26461710592625814,
+            0.26515992352554724,
+            0.2657557845511951,
+            0.26640434993981005,
+            0.2671052242760842,
+            0.26785800457782405,
+            0.26866226628403356,
+            0.2695175385046153,
+            0.2704232847034297,
+            0.2713790515223909,
+            0.27238432632239307,
+            0.27343858555102196,
+            0.27454116795123473,
+            0.27569156397659816,
+            0.2768891565734739,
+            0.2781333399687931,
+            0.2794235167220062,
+            0.28075899757661843,
+            0.2821391965196446,
+            0.28356344145362694,
+            0.2850310382620423,
+            0.28654136610330133,
+            0.2880937404591739,
+            0.28968747741460227,
+            0.29132190294422333,
+            0.2929963351396933,
+            0.29471009152708233,
+            0.29646249045309353,
+            0.2982528509501802,
+            0.30008049361484324,
+            0.3019447414611849,
+            0.3038449207008192,
+            0.305780361475863,
+            0.3077503984705815,
+            0.3097543715796662,
+            0.31179162644722785,
+            0.31386151498200093,
+            0.3159633958343332,
+            0.3180966348186371,
+            0.32026060531139294,
+            0.3224546857409169,
+            0.3246782709856239,
+            0.32693075655302145,
+            0.32921154923157336,
+            0.33152006754659846,
+            0.3338557299552907,
+            0.3362179788738244,
+            0.3386062536638584,
+            0.34102000961487566,
+            0.34345868574088395,
+            0.34592179155977326,
+            0.34840879376018913,
+            0.3509191842646833,
+            0.3534524647239614,
+            0.3560081464962021,
+            0.3585857506140189,
+            0.3611848077357147,
+            0.36380485809240143,
+            0.3664454946516368,
+            0.3691061894427075,
+            0.37178655468289323,
+            0.37448616812566965,
+            0.37720461653619874,
+            0.3799414956111529,
+            0.3826964098789387,
+            0.3854689725869714,
+            0.3882588045364257,
+            0.39106553588274123,
+            0.39388880664790393,
+            0.396728263633568,
+            0.39958356175026927,
+            0.40245436385505495,
+            0.4053403389658259,
+            0.40824116669598026,
+            0.4111565339037282,
+            0.41408613358324686,
+            0.4170296658144288,
+            0.41998683760273964,
+            0.4229573626784782,
+            0.4259409598278596,
+            0.42893735718557263,
+            0.43194628839435134,
+            0.4349674934085231,
+            0.438000718311705,
+            0.44104571519272484,
+            0.44410224199482584,
+            0.4471700622833557,
+            0.45024894499599305,
+            0.4533386898870305,
+            0.4564390103649127,
+            0.4595497401015431
+        ],
+        y: [
+            0.07604223483084326,
+            0.07756246323245658,
+            0.07908407312104233,
+            0.08060559162084974,
+            0.08212721812710219,
+            0.08364863328527751,
+            0.08517017447442712,
+            0.08669171921217032,
+            0.08821326109288301,
+            0.0897348012180564,
+            0.09125635469610745,
+            0.09277788344625032,
+            0.094299431423995,
+            0.09582097028808453,
+            0.09734251683730222,
+            0.09886409113433813,
+            0.10038567082364003,
+            0.10190716909932714,
+            0.10342867988919908,
+            0.10495022182009774,
+            0.10647182205189801,
+            0.10799334151411043,
+            0.10951488199905877,
+            0.11103641453060194,
+            0.11255794474908248,
+            0.11407950180666901,
+            0.11560102081971334,
+            0.11712256812783968,
+            0.11864412062884364,
+            0.12016564320715326,
+            0.12168718378537734,
+            0.123208728589561,
+            0.12473026972588713,
+            0.12625181195722776,
+            0.12777335430083242,
+            0.1292948962502297,
+            0.1308164381025984,
+            0.1323379800086306,
+            0.13385952201557047,
+            0.1353810641234605,
+            0.13690260631434484,
+            0.1384241485787898,
+            0.1399456908828306,
+            0.14146723321589658,
+            0.14298877557194536,
+            0.1445103179475018,
+            0.14603186034344717,
+            0.1475534027576405,
+            0.14907494518926837,
+            0.1505964856663256,
+            0.15211802790815213,
+            0.15363957015304855,
+            0.15516111240167432,
+            0.1566826564667056,
+            0.15820419810371056,
+            0.15972574264214778,
+            0.16124728726309157,
+            0.16276883327422548,
+            0.16429036585581183,
+            0.1658119081618007,
+            0.16733345046152023,
+            0.16885499274978777,
+            0.17037653502447805,
+            0.17189807728529516,
+            0.17341961953433885,
+            0.1749411617756738,
+            0.1764627040199617,
+            0.17798427110238144,
+            0.17950581285692815,
+            0.18102735461822836,
+            0.18254889645557193,
+            0.18407043838639,
+            0.18559198039802288,
+            0.18711352246107926,
+            0.18863506453805562,
+            0.19015660602182674,
+            0.19167814679926348,
+            0.19319968758643735,
+            0.194721228331719,
+            0.19624276902085458,
+            0.1977643096674234,
+            0.1992858494507436,
+            0.20080738913489787,
+            0.20232892936205138,
+            0.20385047015902943,
+            0.20537201151907628,
+            0.206893553396814,
+            0.2084150956821999,
+            0.2099366374275399,
+            0.21145817911423817,
+            0.21297972075763116,
+            0.21450126239269401,
+            0.2160228040533667,
+            0.2175443457805417,
+            0.21906588761566362,
+            0.22058742955314015,
+            0.22210897148413333,
+            0.2236305257716785,
+            0.22515205970067398,
+            0.22667359718343
+        ]
+    };
+
+    const frontier_positions = {
+        strategy_names: [
+            "Market Cap Weight", 
+            "Min Variance", 
+            "Max Sharpe", 
+            "Max Sortino", 
+            "Target Return", 
+            "Target Volatility", 
+            "Cvar 90", 
+            "Cvar 95", 
+            "Cvar 99", 
+            "Cvar 999", 
+            "Max Information"
+        ],
+        x: [
+            0.324701419298726,
+            0.2626346021396342,
+            0.44207307028925946,
+            0.4457089196228332,
+            0.4595497411594582,
+            0.2626346021396342,
+            0.26232390816857304,
+            0.2630864673971702,
+            0.2636442372797258,
+            0.26215685056393867,
+            0.262639575219105
+        ],
+        y: [
+            0.1521337636813182,
+            0.08164893635509768,
+            0.2180563989304016,
+            0.21986344014158649,
+            0.22667359770144244,
+            0.08164893635509768,
+            0.07153446154788903,
+            0.0841597297912409,
+            0.08651288265313103,
+            0.07508067297153195,
+            0.08168191505280377
+        ]
+    };
+
+     // Set up SVG and margins
+     const svg = d3.select("svg"),
+              margin = {top: 20, right: 30, bottom: 30, left: 40},
+              width = +svg.attr("width") - margin.left - margin.right,
+              height = +svg.attr("height") - margin.top - margin.bottom,
+              g = svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
+
+        // Create scales
+        const xScale = d3.scaleLinear()
+            .domain(d3.extent([...frontier_runs.x, ...frontier_positions.x])).nice()
+            .range([0, width]);
+
+        const yScale = d3.scaleLinear()
+            .domain(d3.extent([...frontier_runs.y, ...frontier_positions.y])).nice()
+            .range([height, 0]);
+
+        // Create line generator
+        const line = d3.line()
+            .x((d, i) => xScale(frontier_runs.x[i]))
+            .y((d, i) => yScale(frontier_runs.y[i]));
+
+        // Add line path
+        g.append("path")
+            .datum(frontier_runs.y)
+            .attr("class", "line")
+            .attr("d", line);
+
+        // Add circles for frontier_runs
+        g.selectAll(".circle-runs")
+            .data(frontier_runs.y)
+            .enter().append("circle")
+            .attr("class", "circle-runs")
+            .attr("cx", (d, i) => xScale(frontier_runs.x[i]))
+            .attr("cy", (d, i) => yScale(d))
+            .attr("r", 5);
+
+        // Select tooltip
+        const tooltip = d3.select(".tooltip");
+
+        // Add circles for frontier_positions with tooltip functionality
+        g.selectAll(".circle-positions")
+            .data(frontier_positions.y)
+            .enter().append("circle")
+            .attr("class", "circle-positions")
+            .attr("cx", (d, i) => xScale(frontier_positions.x[i]))
+            .attr("cy", (d, i) => yScale(d))
+            .attr("r", 5)
+            .on("mouseover", function(event, d, i) {
+                tooltip.transition().duration(200).style("opacity", 1);
+                tooltip.html(`${frontier_positions.strategy_names[i]}: (${frontier_positions.x[i].toFixed(2)}, ${frontier_positions.y[i].toFixed(2)})`)
+                       .style("left", (event.pageX + 5) + "px")
+                       .style("top", (event.pageY - 28) + "px");
+            })
+            .on("mousemove", function(event) {
+                tooltip.style("left", (event.pageX + 5) + "px")
+                       .style("top", (event.pageY - 28) + "px");
+            })
+            .on("mouseout", function() {
+                tooltip.transition().duration(500).style("opacity", 1);
+            });
+
+              // Add line path
+              g.append("path")
+            .datum(frontier_runs.y)
+            .attr("class", "line")
+            .attr("fill", "none")
+            .attr("stroke", "steelblue")
+            .attr("stroke-width", 2)
+            .attr("d", line);
+
+        // Add scatter plot points for frontier positions
+        g.selectAll(".dot")
+            .data(frontier_positions.x)
+            .enter().append("circle")
+            .attr("class", "dot")
+            .attr("cx", (d, i) => xScale(frontier_positions.x[i]))
+            .attr("cy", (d, i) => yScale(frontier_positions.y[i]))
+            .attr("r", 4)
+            .attr("fill", "red");
+
+        // Add axis labels
+        g.append("g")
+            .attr("transform", `translate(0,${height})`)
+            .call(d3.axisBottom(xScale));
+
+        g.append("g")
+            .call(d3.axisLeft(yScale));
+
+        // Optional: Add titles or labels for strategies
+        g.selectAll(".text")
+            .data(frontier_positions.strategy_names)
+            .enter().append("text")
+            .attr("x", (d, i) => xScale(frontier_positions.x[i]) + 5)
+            .attr("y", (d, i) => yScale(frontier_positions.y[i]) - 5)
+            .text(d => d)
+            .attr("font-size", "10px")
+            .attr("fill", "black");
+
+</script>
+
+
+
+</body>
+
+</html>
