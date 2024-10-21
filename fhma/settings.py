@@ -55,7 +55,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'client',
-    'equipment'
+    'equipment',
+    'survey',
 ]
 
 MIDDLEWARE = [
@@ -219,6 +220,7 @@ UNFOLD = {
             },
             {
                 "title": _("Equipment"),
+                "icon": "shopping_cart", 
                 "separator": True,  # Top border
                 "collapsible": True,  # Collapsible group of links
                 "items": [
@@ -233,6 +235,19 @@ UNFOLD = {
                         "icon": "wheelchair_pickup",
                         "link": reverse_lazy("admin:equipment_equipment_changelist"),
                         "permission": lambda request: request.user.has_perm('events.view_location'),
+                    },
+                ],
+            },
+                        {
+                "title": _("Survey"),
+                "separator": True,  # Top border
+                "collapsible": True,  # Collapsible group of links
+                "items": [
+                    {
+                        "title": _("Survey"),
+                        "icon": "list", 
+                        "link": reverse_lazy("admin:survey_survey_changelist"),
+                        "permission": lambda request: request.user.has_perm('events.view_device'),
                     },
                 ],
             },
