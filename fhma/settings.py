@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 import os
 import sys
+from os import environ, path
 from pathlib import Path
 from django.utils.translation import gettext_lazy as _
 from django.urls import reverse_lazy
@@ -75,7 +76,9 @@ ROOT_URLCONF = 'fhma.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+         "DIRS": [
+            path.normpath(path.join(BASE_DIR, "fhma/templates")),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -168,6 +171,8 @@ UNFOLD = {
         "image": lambda request: static("images/lake.jpg"),
     },
     "SITE_SYMBOL": "speed",  # symbol from icon set
+    "ENVIRONMENT": "fhma.utils.environment_callback",
+    "DASHBOARD_CALLBACK": "fhma.views.dashboard_callback",
     # "SITE_FAVICONS": [
     #     {
     #         "rel": "icon",
@@ -206,6 +211,16 @@ UNFOLD = {
         "show_all_applications": True,  # Dropdown with all applications and models
         "navigation": [
             {
+                "title": _("Dashboards"),
+                "items": [
+                    {
+                        "title": _("Dashboard"),
+                        "icon": "dashboard",
+                        "link": reverse_lazy("admin:index"),
+                    },
+                ],
+            },
+            {
                 "title": _("Clients"),
                 "separator": True,  # Top border
                 "collapsible": True,  # Collapsible group of links
@@ -219,14 +234,13 @@ UNFOLD = {
                 ],
             },
             {
-                "title": _("Equipment"),
-                "icon": "shopping_cart", 
+                "title": _("Durable Medical Equipment"),
                 "separator": True,  # Top border
                 "collapsible": True,  # Collapsible group of links
                 "items": [
                     {
-                        "title": _("Orders"),
-                        "icon": "shopping_cart", 
+                        "title": _("Rentals"),
+                        "icon": "shopping_cart",
                         "link": reverse_lazy("admin:equipment_order_changelist"),
                         "permission": lambda request: request.user.has_perm('events.view_device'),
                     },
@@ -238,20 +252,20 @@ UNFOLD = {
                     },
                 ],
             },
-                        {
+            {
                 "title": _("Survey"),
                 "separator": True,  # Top border
                 "collapsible": True,  # Collapsible group of links
                 "items": [
                     {
                         "title": _("Survey"),
-                        "icon": "list", 
+                        "icon": "list",
                         "link": reverse_lazy("admin:survey_survey_changelist"),
                         "permission": lambda request: request.user.has_perm('events.view_device'),
                     },
                 ],
             },
-           {
+            {
                 "title": _("Users"),
                 "separator": True,  # Top border
                 "collapsible": True,  # Collapsible group of links

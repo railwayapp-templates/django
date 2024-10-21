@@ -9,3 +9,4 @@ class SaleAdmin(ModelAdmin):
     list_display = ["name", "email", "phone", "address", "city", "state", "zip", "country"]
     search_fields = ["name", "email", "phone", "address", "city", "state", "zip", "country"]
     list_filter = ["name", "email", "phone", "address", "city", "state", "zip", "country"]
+    

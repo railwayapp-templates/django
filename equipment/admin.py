@@ -1,9 +1,19 @@
 from django.contrib import admin
 from django.db.models import TextChoices
 from django.utils.translation import gettext_lazy as _
+from django.core.validators import EMPTY_VALUES
 
 from unfold.admin import ModelAdmin
 from unfold.decorators import display
+from unfold.contrib.filters.admin import (
+    ChoicesDropdownFilter,
+    MultipleRelatedDropdownFilter,
+    RangeDateFilter,
+    RangeNumericFilter,
+    RelatedDropdownFilter,
+    SingleNumericFilter,
+    TextFilter,
+)
 
 from .models import Equipment, Order
 
@@ -22,7 +32,8 @@ class OrderAdmin(ModelAdmin):
     list_display = ["equipment", "quantity", "client", "show_status_customized_color"]
     search_fields = ["equipment", "client"]
     list_filter = ["status", "client"]
-
+    autocomplete_fields = ["equipment", "client"]
+    
     @display(
         description=_("Status"),
         ordering="status",
