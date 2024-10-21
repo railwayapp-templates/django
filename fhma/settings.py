@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 import os
 import sys
 from pathlib import Path
+from django.utils.translation import gettext_lazy as _
+from django.urls import reverse_lazy
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -197,7 +199,44 @@ UNFOLD = {
         "show_search": True,  # Search in applications and models names
         "show_all_applications": True,  # Dropdown with all applications and models
         "navigation": [
-
+            {
+                "title": _("Equipment"),
+                "separator": True,  # Top border
+                "collapsible": True,  # Collapsible group of links
+                "items": [
+                    {
+                        "title": _("Orders"),
+                        "icon": "shopping_cart", 
+                        "link": reverse_lazy("admin:equipment_order_changelist"),
+                        "permission": lambda request: request.user.has_perm('events.view_device'),
+                    },
+                    {
+                        "title": _("Equipment"),
+                        "icon": "wheelchair_pickup",
+                        "link": reverse_lazy("admin:equipment_equipment_changelist"),
+                        "permission": lambda request: request.user.has_perm('events.view_location'),
+                    },
+                ],
+            },
+           {
+                "title": _("Users"),
+                "separator": True,  # Top border
+                "collapsible": True,  # Collapsible group of links
+                "items": [
+                    {
+                        "title": _("Users"),
+                        "icon": "person",  # Example icon, change as needed
+                        "link": reverse_lazy("admin:auth_user_changelist"),
+                        "permission": lambda request: request.user.has_perm('auth.view_user'),
+                    },
+                    {
+                        "title": _("Groups"),
+                        "icon": "group",  # Example icon, change as needed
+                        "link": reverse_lazy("admin:auth_group_changelist"),
+                        "permission": lambda request: request.user.has_perm('auth.view_group'),
+                    },
+                ],
+            },
         ],
     },
 }
