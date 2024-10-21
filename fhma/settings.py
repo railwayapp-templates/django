@@ -144,3 +144,60 @@ STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+UNFOLD = {
+    "SITE_TITLE": "Family Health Care Amigos Portal",
+    "SITE_HEADER": "FHAmigos Portal",
+    "SITE_URL": "/",
+    # "SITE_ICON": lambda request: static("icon.svg"),  # both modes, optimise for 32px height
+    # "SITE_ICON": {
+    #     "light": lambda request: static("icon-light.png"),  # light mode
+    #     "dark": lambda request: static("icon-dark.png"),  # dark mode
+    # },
+    # "SITE_LOGO": lambda request: static("logo.svg"),  # both modes, optimise for 32px height
+    # "SITE_LOGO": {
+    #     "light": lambda request: static("logo-light.png"),  # light mode
+    #     "dark": lambda request: static("logo-dark.png"),  # dark mode
+    # },
+    "SITE_SYMBOL": "speed",  # symbol from icon set
+    # "SITE_FAVICONS": [
+    #     {
+    #         "rel": "icon",
+    #         "sizes": "32x32",
+    #         "type": "image/png",
+    #         "href": lambda request: static("logo-light.png"),
+    #     },
+    # ],
+    "SHOW_HISTORY": True,  # show/hide "History" button, default: True
+    "SHOW_VIEW_ON_SITE": True,  # show/hide "View on site" button, default: True
+    "COLORS": {
+        "font": {
+            "subtle-light": "107 114 128",
+            "subtle-dark": "156 163 175",
+            "default-light": "75 85 99",
+            "default-dark": "209 213 219",
+            "important-light": "17 24 39",
+            "important-dark": "243 244 246",
+        },
+        "primary": {
+            "50": "240 249 255",   # Lightest blue
+            "100": "224 242 254",  # Lighter blue
+            "200": "186 230 253",  # Light blue
+            "300": "125 211 252",  # Sky blue
+            "400": "56 189 248",   # Blue
+            "500": "14 165 233",   # Dark blue
+            "600": "2 132 199",    # Darker blue
+            "700": "3 105 161",    # Even darker blue
+            "800": "7 89 133",     # Near navy blue
+            "900": "12 74 110",    # Navy blue
+            "950": "8 47 73",      # Almost black blue
+        },
+    },
+    "SIDEBAR": {
+        "show_search": True,  # Search in applications and models names
+        "show_all_applications": True,  # Dropdown with all applications and models
+        "navigation": [
+
+        ],
+    },
+}
