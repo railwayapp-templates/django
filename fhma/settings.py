@@ -15,6 +15,8 @@ import sys
 from pathlib import Path
 from django.utils.translation import gettext_lazy as _
 from django.urls import reverse_lazy
+from django.templatetags.static import static
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -161,6 +163,9 @@ UNFOLD = {
     #     "light": lambda request: static("logo-light.png"),  # light mode
     #     "dark": lambda request: static("logo-dark.png"),  # dark mode
     # },
+    "LOGIN": {
+        "image": lambda request: static("images/lake.jpg"),
+    },
     "SITE_SYMBOL": "speed",  # symbol from icon set
     # "SITE_FAVICONS": [
     #     {
@@ -199,6 +204,19 @@ UNFOLD = {
         "show_search": True,  # Search in applications and models names
         "show_all_applications": True,  # Dropdown with all applications and models
         "navigation": [
+            {
+                "title": _("Clients"),
+                "separator": True,  # Top border
+                "collapsible": True,  # Collapsible group of links
+                "items": [
+                    {
+                        "title": _("Clients"),
+                        "icon": "people",  # Example icon, change as needed
+                        "link": reverse_lazy("admin:client_client_changelist"),
+                        "permission": lambda request: request.user.has_perm('events.view_client'),
+                    },
+                ],
+            },
             {
                 "title": _("Equipment"),
                 "separator": True,  # Top border
