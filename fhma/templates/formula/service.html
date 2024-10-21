@@ -6,14 +6,11 @@
             {% trans "Welcome to the Family Health Amigos Portal" %}
         </h2>
 
-        <p class="leading-relaxed max-w-3xl mt-2">
-            {% trans "This is a ceneterlized portal for all the data related to Family Health Amigos operations. You can input durable medical equipment (DME) orders, track the status of the orders, client database, survey response database and incocinent supplies order data" %}
-            
+        <p class="leading-relaxed mt-2">
+            {% trans "This is a ceneterlized portal for all the data related to Family Health Amigos operations. You can input durable medical equipment (DME) orders, track the status of the orders, client database, survey response database and incocinent supplies order data." %}  
         </p>
-    </div>
 
-    <div class="lg:ml-auto">
-        {% component "unfold/components/flex.html" with class="flex-col gap-4 lg:flex-row" %}
+        <div class="flex flex-col gap-4 mt-4 lg:flex-row lg:items-center">
             {% component "unfold/components/button.html" with href="" %}
                 {% trans "New Equipment Order" %}
             {% endcomponent %} 
@@ -22,9 +19,13 @@
                 {% trans "New Innconient Supply Order" %}
             {% endcomponent %} 
 
+            {% component "unfold/components/button.html" with href="" %}
+                {% trans "New Client" %}
+            {% endcomponent %} 
+
             {% component "unfold/components/button.html" with href="" variant="default" %}
                 {% trans "Documentation" %}
             {% endcomponent %}  
-        {% endcomponent %}
+        </div>
     </div>
 </div>
