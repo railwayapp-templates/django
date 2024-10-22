@@ -6,9 +6,9 @@ from .models import Client, AreaServiced
 
 @admin.register(AreaServiced)
 class AreaServicedAdmin(ModelAdmin):
-    list_display = ["name", "zipcodes"]
-    search_fields = ["name", "zipcodes"]
-    list_filter = ["name", "zipcodes"]
+    list_display = ["name", "zipcode"]
+    search_fields = ["name", "zipcode"]
+    list_filter = ["name", "zipcode"]
 
 @admin.register(Client)
 class ClientAdmin(ModelAdmin):

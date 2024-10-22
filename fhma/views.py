@@ -7,7 +7,7 @@ from django.utils.translation import gettext_lazy as _
 from django.views.generic import RedirectView, TemplateView
 from unfold.views import UnfoldModelAdminViewMixin
 
-from client.models import Client
+from client.models import Client, AreaServiced
 from equipment.models import Order
 from supplies.models import Supplies, SuppliesOrder
 
@@ -20,6 +20,21 @@ class MyClassBasedView(UnfoldModelAdminViewMixin, TemplateView):
     permission_required = ()  # required: tuple of permissions
     template_name = "formula/driver_custom_page.html"
 
+def update_areaservice_breakdown():
+    # Fetch all areas serviced
+    areas_serviced = AreaServiced.objects.all()
+    
+    # Create the updated zipcode breakdown list
+    breakdown = []
+    for area in areas_serviced:
+        count = Client.objects.filter(area_serviced=area).count()
+        breakdown.append({
+            "title": area.name + ' (' + intcomma(count) + ')',
+            "description": area.zipcode,
+            "value": count
+        })
+    
+    return breakdown
 
 def dashboard_callback(request, context):
     WEEKDAYS = [
@@ -78,53 +93,7 @@ def dashboard_callback(request, context):
                     ),
                 },
             ],
-            "zipcode_breakdown": [
-                {
-                    "title": "85648",
-                    "description": "Rio Rico, Tumacacori-Carmen, & Rio Rico",
-                    "value": 10,
-                },
-                {
-                    "title": "85616",
-                    "description": "Huachuca City, & Whetstone",
-                    "value": 27,
-                },
-                {
-                    "title": "85624",
-                    "description": "Patagonia, Lochiel, & Harshaw",
-                    "value": 8,
-                },
-                {
-                    "title": "85621",
-                    "description": "Nogales, Kino Springs, Ruby, & Beyerville",
-                    "value": 40,
-                },
-                {
-                    "title": "85637",
-                    "description": "Sonoita, & Greaterville",
-                    "value": 1,
-                },
-                {
-                    "title": "85603",
-                    "description": "Bisbee & Naco",
-                    "value": 5,
-                },
-                {
-                    "title": "85607",
-                    "description": "Douglas",
-                    "value": 32,
-                },
-                {
-                    "title": "85635",
-                    "description": "Sierra Vista",
-                    "value": 14,
-                },
-                {
-                    "title": "85602",
-                    "description": "Benson",
-                    "value": 9,
-                },
-            ],
+            "zipcode_breakdown": update_areaservice_breakdown(),
             "performance": [
                 {
                     "title": _("Last week revenue"),
