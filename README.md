@@ -52,3 +52,9 @@ INSTALLED_APPS = [
     '<app_name>',
 ]
 ```
+
+## Generate static files
+
+```bash
+python manage.py collectstatic
+```

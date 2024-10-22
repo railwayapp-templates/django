@@ -30,13 +30,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-rc^*w^w&6g9_(uvx#6s*bnt!w)l0rdi%!l7mv#y%uc&x%wo5pk'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get("DEBUG", "False") == "True"
 
 ALLOWED_HOSTS = ["*"]
 
 # FORM SUBMISSION
 # Comment out the following line and place your railway URL, and your production URL in the array.
-CSRF_TRUSTED_ORIGINS = ["https://fhma-portal-production.up.railway.app", "http://127.0.0.1"]
+if not DEBUG:
+    CSRF_TRUSTED_ORIGINS = ["https://fhma-portal-production.up.railway.app"]
+else: 
+    CSRF_TRUSTED_ORIGINS = ["*"]
 
 # Application definition
 

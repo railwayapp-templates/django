@@ -1,10 +1,14 @@
 import json
 import random
+from datetime import datetime, timedelta
 
 from django.contrib.humanize.templatetags.humanize import intcomma
 from django.utils.safestring import mark_safe
 from django.utils.translation import gettext_lazy as _
 from django.views.generic import RedirectView, TemplateView
+from django.db.models.functions import TruncDay
+from django.db.models import F, Count
+
 from unfold.views import UnfoldModelAdminViewMixin
 
 from client.models import Client, AreaServiced
@@ -49,11 +53,29 @@ def dashboard_callback(request, context):
 
     total_number_of_clients = Client.objects.count()
     total_number_of_outstanding_rentals = Order.objects.filter(status="RT").count()
+    total_number_of_rentals = Order.objects.count()
     total_number_of_inconcient_supplies = SuppliesOrder.objects.count()
 
-    performance_positive = [[1, random.randrange(8, 28)] for i in range(1, 28)]
-    performance_negative = [
-        [-1, -random.randrange(8, 28)] for i in range(1, 28)]
+    ## INCONCIENT SUPPLIES OVER TIME
+    # Calculate the date 90 days ago
+    ninety_days_ago = datetime.now() - timedelta(days=90)
+
+    # Get SuppliesOrder over the last 90 days
+    recent_supplies_orders = SuppliesOrder.objects.filter(delivery_date__gte=ninety_days_ago)
+    # Annotate and group by date
+    orders_by_date = recent_supplies_orders.annotate(date=F('delivery_date')).values('date').annotate(count=Count('id')).order_by('date')
+    # Extract dates and counts
+    supplies_dates = [order['date'].strftime('%B %d, %Y') for order in orders_by_date]
+    supplies_counts = [order['count'] for order in orders_by_date]
+
+    ## EQUIPMENT ORDERS OVER TIME
+    # Get Order over the last 90 days
+    recent_orders = Order.objects.filter(last_updated__gte=ninety_days_ago)
+    # Annotate and group by date
+    orders_by_date = recent_orders.annotate(date=F('last_updated')).values('date').annotate(count=Count('id')).order_by('date')
+    # Extract dates and counts
+    orders_dates = [order['date'].strftime('%B %d, %Y') for order in orders_by_date]
+    orders_counts = [order['count'] for order in orders_by_date]
 
     context.update(
         {
@@ -96,32 +118,32 @@ def dashboard_callback(request, context):
             "zipcode_breakdown": update_areaservice_breakdown(),
             "performance": [
                 {
-                    "title": _("Last week revenue"),
-                    "metric": "$1,234.56",
+                    "title": _("Inconcient Supplies Over Times"),
+                    "metric": f"{intcomma(total_number_of_inconcient_supplies)}",
                     "footer": mark_safe(
-                        '<strong class="text-green-600 font-medium">+3.14%</strong>&nbsp;progress from last week'
+                        'Inconcient supplies handed out over the last 90 days'
                     ),
                     "chart": json.dumps(
                         {
-                            "labels": [WEEKDAYS[day % 7] for day in range(1, 28)],
+                            "labels": supplies_dates,
                             "datasets": [
-                                {"data": performance_positive,
+                                {"data": supplies_counts,
                                     "borderColor": "#9333ea"}
                             ],
                         }
                     ),
                 },
                 {
-                    "title": _("Last week expenses"),
-                    "metric": "$1,234.56",
+                    "title": _("Equipment Rentals Over Time"),
+                    "metric": f"{intcomma(total_number_of_rentals)}",
                     "footer": mark_safe(
-                        '<strong class="text-green-600 font-medium">+3.14%</strong>&nbsp;progress from last week'
+                        'Medical equipment rented out over the last 90 days'
                     ),
                     "chart": json.dumps(
                         {
-                            "labels": [WEEKDAYS[day % 7] for day in range(1, 28)],
+                            "labels": orders_dates,
                             "datasets": [
-                                {"data": performance_negative,
+                                {"data": orders_counts,
                                     "borderColor": "#f43f5e"}
                             ],
                         }
