@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'client',
     'equipment',
     'survey',
+    'supplies'
 ]
 
 MIDDLEWARE = [
@@ -252,6 +253,25 @@ UNFOLD = {
                     },
                 ],
             },
+                        {
+                "title": _("Incontinent Supplies"),
+                "separator": True,  # Top border
+                "collapsible": True,  # Collapsible group of links
+                "items": [
+                    {
+                        "title": _("Supplies"),
+                        "icon": "local_shipping",
+                        "link": reverse_lazy("admin:supplies_supplies_changelist"),
+                        "permission": lambda request: request.user.has_perm('events.view_device'),
+                    },
+                    {
+                        "title": _("Orders"),
+                        "icon": "shopping_basket",
+                        "link": reverse_lazy("admin:supplies_suppliesorder_changelist"),
+                        "permission": lambda request: request.user.has_perm('events.view_location'),
+                    },
+                ],
+            },
             {
                 "title": _("Survey"),
                 "separator": True,  # Top border
@@ -261,7 +281,7 @@ UNFOLD = {
                         "title": _("Survey"),
                         "icon": "list",
                         "link": reverse_lazy("admin:survey_survey_changelist"),
-                        "permission": lambda request: request.user.has_perm('events.view_device'),
+                        "permission": lambda request: request.user.has_perm('events.view_survey'),
                     },
                 ],
             },
