@@ -1,8 +1,16 @@
 from django.db import models
 
+# Area Serviced Models 
+class AreaServiced(models.Model):
+    name = models.CharField(max_length=200)
+    zipcodes = models.CharField(max_length=200)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.name
+    
 # Ethnicity choices
-
-
 class Ethnicity(models.TextChoices):
     ASIAN = 'AS', 'Asian'
     BLACK = 'BL', 'Black'
@@ -11,8 +19,6 @@ class Ethnicity(models.TextChoices):
     OTHER = 'OT', 'Other'
 
 # Client model
-
-
 class Client(models.Model):
     name = models.CharField(max_length=200)
     email = models.EmailField(max_length=200)
@@ -20,8 +26,9 @@ class Client(models.Model):
     address = models.CharField(max_length=200)
     city = models.CharField(max_length=200)
     state = models.CharField(max_length=200)
-    zip = models.CharField(max_length=10)
     country = models.CharField(max_length=200)
+    zipcode = models.CharField(max_length=200, null=True)
+    area_serviced = models.ForeignKey(AreaServiced, on_delete=models.CASCADE, null=True)
     ethnicity = models.CharField(
         max_length=2,
         choices=Ethnicity.choices,

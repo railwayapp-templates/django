@@ -77,7 +77,7 @@ ROOT_URLCONF = 'fhma.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-         "DIRS": [
+        "DIRS": [
             path.normpath(path.join(BASE_DIR, "fhma/templates")),
         ],
         'APP_DIRS': True,
@@ -227,6 +227,12 @@ UNFOLD = {
                 "collapsible": True,  # Collapsible group of links
                 "items": [
                     {
+                        "title": _("Area Serviced"),
+                        "icon": "location_city",
+                        "link": reverse_lazy("admin:client_areaserviced_changelist"),
+                        "permission": lambda request: request.user.has_perm('events.view_location'),
+                    },
+                    {
                         "title": _("Clients"),
                         "icon": "people",  # Example icon, change as needed
                         "link": reverse_lazy("admin:client_client_changelist"),
@@ -253,7 +259,7 @@ UNFOLD = {
                     },
                 ],
             },
-                        {
+            {
                 "title": _("Incontinent Supplies"),
                 "separator": True,  # Top border
                 "collapsible": True,  # Collapsible group of links
