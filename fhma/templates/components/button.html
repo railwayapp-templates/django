@@ -1,0 +1,8 @@
+<button 
+    {% if submit %}type="submit"{% endif%} 
+    {% if name %}name="{{ name }}"{% endif %} 
+    {% if href %}onclick="window.location.href='{{ href }}'"{% endif %}
+    class="bg-primary-600 font-medium px-3 py-2 rounded-md text-sm text-white hover:bg-sky-700"
+>
+    {{ children }}
+</button>

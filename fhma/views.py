@@ -7,13 +7,16 @@ from django.utils.translation import gettext_lazy as _
 from django.views.generic import RedirectView, TemplateView
 from unfold.views import UnfoldModelAdminViewMixin
 
+from client.models import Client
+from equipment.models import Order
+from supplies.models import Supplies, SuppliesOrder
 
 class HomeView(RedirectView):
     pattern_name = "admin:index"
 
 
 class MyClassBasedView(UnfoldModelAdminViewMixin, TemplateView):
-    title = "Custom Title"  # required: custom page header title
+    title = "Home Dashboard"  # required: custom page header title
     permission_required = ()  # required: tuple of permissions
     template_name = "formula/driver_custom_page.html"
 
@@ -29,9 +32,10 @@ def dashboard_callback(request, context):
         "Sun",
     ]
 
-    positive = [[1, random.randrange(8, 28)] for i in range(1, 28)]
-    negative = [[-1, -random.randrange(8, 28)] for i in range(1, 28)]
-    average = [r[1] - random.randint(3, 5) for r in positive]
+    total_number_of_clients = Client.objects.count()
+    total_number_of_outstanding_rentals = Order.objects.filter(status="RT").count()
+    total_number_of_inconcient_supplies = SuppliesOrder.objects.count()
+
     performance_positive = [[1, random.randrange(8, 28)] for i in range(1, 28)]
     performance_negative = [
         [-1, -random.randrange(8, 28)] for i in range(1, 28)]
@@ -54,21 +58,21 @@ def dashboard_callback(request, context):
             "kpi": [
                 {
                     "title": "Number of Clients Surived",
-                    "metric": f"200",
+                    "metric": f"{intcomma(total_number_of_clients)}",
                     "footer": mark_safe(
                         f'Total number of clients reached and logged in the system'
                     ),
                 },
                 {
                     "title": "Number of Outstanding Rentals",
-                    "metric": f"12",
+                    "metric": f"{intcomma(total_number_of_outstanding_rentals)}",
                     "footer": mark_safe(
                         f'Total number of medical equipment rented out and not returned'
                     ),
                 },
                 {
                     "title": "Total number of inconcient supplies handed out",
-                    "metric": f"1,234",
+                    "metric": f"{intcomma(total_number_of_inconcient_supplies)}",
                     "footer": mark_safe(
                         f'Total number of inconcient supply orders handed out'
                     ),
