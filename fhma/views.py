@@ -33,19 +33,21 @@ def dashboard_callback(request, context):
     negative = [[-1, -random.randrange(8, 28)] for i in range(1, 28)]
     average = [r[1] - random.randint(3, 5) for r in positive]
     performance_positive = [[1, random.randrange(8, 28)] for i in range(1, 28)]
-    performance_negative = [[-1, -random.randrange(8, 28)] for i in range(1, 28)]
+    performance_negative = [
+        [-1, -random.randrange(8, 28)] for i in range(1, 28)]
 
     context.update(
         {
             "navigation": [
                 {"title": _("Dashboard"), "link": "/", "active": True},
-                {"title": _("Analytics"), "link": "#"},
-                {"title": _("Settings"), "link": "#"},
+                {"title": _("Equipment Dashboard"), "link": "#"},
+                {"title": _("Supplies Dashboard"), "link": "#"},
+                {"title": _("Client Dashboard"), "link": "#"},
             ],
             "filters": [
                 {"title": _("All"), "link": "#", "active": True},
                 {
-                    "title": _("New"),
+                    "title": _("Last 30 Days"),
                     "link": "#",
                 },
             ],
@@ -56,89 +58,69 @@ def dashboard_callback(request, context):
                     "footer": mark_safe(
                         f'Total number of clients reached and logged in the system'
                     ),
-                    "chart": json.dumps(
-                        {
-                            "labels": [WEEKDAYS[day % 7] for day in range(1, 28)],
-                            "datasets": [{"data": average, "borderColor": "#9333ea"}],
-                        }
+                },
+                {
+                    "title": "Number of Outstanding Rentals",
+                    "metric": f"12",
+                    "footer": mark_safe(
+                        f'Total number of medical equipment rented out and not returned'
                     ),
                 },
                 {
-                    "title": "Product B Performance",
-                    "metric": f"${intcomma(f"{random.uniform(1000, 9999):.02f}")}",
+                    "title": "Total number of inconcient supplies handed out",
+                    "metric": f"1,234",
                     "footer": mark_safe(
-                        f'<strong class="text-green-700 font-semibold dark:text-green-400">+{intcomma(f"{random.uniform(1, 9):.02f}")}%</strong>&nbsp;progress from last week'
-                    ),
-                },
-                {
-                    "title": "Product C Performance",
-                    "metric": f"${intcomma(f"{random.uniform(1000, 9999):.02f}")}",
-                    "footer": mark_safe(
-                        f'<strong class="text-green-700 font-semibold dark:text-green-400">+{intcomma(f"{random.uniform(1, 9):.02f}")}%</strong>&nbsp;progress from last week'
+                        f'Total number of inconcient supply orders handed out'
                     ),
                 },
             ],
-            "progress": [
+            "zipcode_breakdown": [
                 {
-                    "title": "🦆 Social marketing e-book",
-                    "description": f"${intcomma(f"{random.uniform(1000, 9999):.02f}")}",
-                    "value": random.randint(10, 90),
+                    "title": "85648",
+                    "description": "Rio Rico, Tumacacori-Carmen, & Rio Rico",
+                    "value": 10,
                 },
                 {
-                    "title": "🦍 Freelancing tasks",
-                    "description": f"${intcomma(f"{random.uniform(1000, 9999):.02f}")}",
-                    "value": random.randint(10, 90),
+                    "title": "85616",
+                    "description": "Huachuca City, & Whetstone",
+                    "value": 27,
                 },
                 {
-                    "title": "🐋 Development coaching",
-                    "description": f"${intcomma(f"{random.uniform(1000, 9999):.02f}")}",
-                    "value": random.randint(10, 90),
+                    "title": "85624",
+                    "description": "Patagonia, Lochiel, & Harshaw",
+                    "value": 8,
                 },
                 {
-                    "title": "🦑 Product consulting",
-                    "description": f"${intcomma(f"{random.uniform(1000, 9999):.02f}")}",
-                    "value": random.randint(10, 90),
+                    "title": "85621",
+                    "description": "Nogales, Kino Springs, Ruby, & Beyerville",
+                    "value": 40,
                 },
                 {
-                    "title": "🐨 Other income",
-                    "description": f"${intcomma(f"{random.uniform(1000, 9999):.02f}")}",
-                    "value": random.randint(10, 90),
+                    "title": "85637",
+                    "description": "Sonoita, & Greaterville",
+                    "value": 1,
                 },
                 {
-                    "title": "🐶 Course sales",
-                    "description": f"${intcomma(f"{random.uniform(1000, 9999):.02f}")}",
-                    "value": random.randint(10, 90),
+                    "title": "85603",
+                    "description": "Bisbee & Naco",
+                    "value": 5,
                 },
                 {
-                    "title": "🐻‍❄️ Ads revenue",
-                    "description": f"${intcomma(f"{random.uniform(1000, 9999):.02f}")}",
-                    "value": random.randint(10, 90),
+                    "title": "85607",
+                    "description": "Douglas",
+                    "value": 32,
+                },
+                {
+                    "title": "85635",
+                    "description": "Sierra Vista",
+                    "value": 14,
+                },
+                {
+                    "title": "85602",
+                    "description": "Benson",
+                    "value": 9,
                 },
             ],
-            "chart": json.dumps(
-                {
-                    "labels": [WEEKDAYS[day % 7] for day in range(1, 28)],
-                    "datasets": [
-                        {
-                            "label": "Example 1",
-                            "type": "line",
-                            "data": average,
-                            "backgroundColor": "#f0abfc",
-                            "borderColor": "#f0abfc",
-                        },
-                        {
-                            "label": "Example 2",
-                            "data": positive,
-                            "backgroundColor": "#9333ea",
-                        },
-                        {
-                            "label": "Example 3",
-                            "data": negative,
-                            "backgroundColor": "#f43f5e",
-                        },
-                    ],
-                }
-            ),
             "performance": [
                 {
                     "title": _("Last week revenue"),
@@ -150,7 +132,8 @@ def dashboard_callback(request, context):
                         {
                             "labels": [WEEKDAYS[day % 7] for day in range(1, 28)],
                             "datasets": [
-                                {"data": performance_positive, "borderColor": "#9333ea"}
+                                {"data": performance_positive,
+                                    "borderColor": "#9333ea"}
                             ],
                         }
                     ),
@@ -165,7 +148,8 @@ def dashboard_callback(request, context):
                         {
                             "labels": [WEEKDAYS[day % 7] for day in range(1, 28)],
                             "datasets": [
-                                {"data": performance_negative, "borderColor": "#f43f5e"}
+                                {"data": performance_negative,
+                                    "borderColor": "#f43f5e"}
                             ],
                         }
                     ),
