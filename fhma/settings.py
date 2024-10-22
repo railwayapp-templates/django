@@ -216,12 +216,28 @@ UNFOLD = {
         "navigation": [
             {
                 "title": _("Dashboards"),
+                "collapsible": True,  # Collapsible group of links
                 "items": [
                     {
                         "title": _("Dashboard"),
                         "icon": "dashboard",
                         "link": reverse_lazy("admin:index"),
                     },
+                    # {
+                    #     "title": _("Equipment Dashboard"),
+                    #     "icon": "accessible",
+                    #     "link": reverse_lazy("admin:dashboard_equipment"),
+                    # },
+                    # {
+                    #     "title": _("Supplies Dashboard"),
+                    #     "icon": "local_shipping",
+                    #     "link": reverse_lazy("admin:index"),
+                    # },
+                    # {
+                    #     "title": _("Client Dashboard"),
+                    #     "icon": "people",
+                    #     "link": reverse_lazy("admin:index"),
+                    # },
                 ],
             },
             {

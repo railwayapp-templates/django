@@ -58,3 +58,7 @@ INSTALLED_APPS = [
 ```bash
 python manage.py collectstatic
 ```
+
+# Icons 
+The following icons are used in the application:
+[Google Material Icons](https://fonts.google.com/icons?icon.query=order&icon.size=24&icon.color=%23e8eaed)
