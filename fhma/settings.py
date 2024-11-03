@@ -61,7 +61,8 @@ INSTALLED_APPS = [
     'client',
     'equipment',
     'survey',
-    'supplies'
+    'supplies',
+    'donor',
 ]
 
 MIDDLEWARE = [
@@ -306,6 +307,25 @@ UNFOLD = {
                         "title": _("Survey"),
                         "icon": "list",
                         "link": reverse_lazy("admin:survey_survey_changelist"),
+                        "permission": lambda request: request.user.has_perm('events.view_survey'),
+                    },
+                ],
+            },
+            {
+                "title": _("Donor"),
+                "separator": True,  # Top border
+                "collapsible": True,  # Collapsible group of links
+                "items": [
+                    {
+                        "title": _("Donor"),
+                        "icon": "person",
+                        "link": reverse_lazy("admin:donor_donor_changelist"),  # Ensure this matches the name in your urls.py
+                        "permission": lambda request: request.user.has_perm('events.view_survey'),
+                    },
+                    {
+                        "title": _("Donations"),
+                        "icon": "attach_money",
+                        "link": reverse_lazy("admin:donor_donation_changelist"),
                         "permission": lambda request: request.user.has_perm('events.view_survey'),
                     },
                 ],
