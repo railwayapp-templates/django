@@ -38,8 +38,6 @@ ALLOWED_HOSTS = ["*"]
 # Comment out the following line and place your railway URL, and your production URL in the array.
 if not DEBUG:
     CSRF_TRUSTED_ORIGINS = ["https://fhma-portal-production.up.railway.app"]
-else: 
-    CSRF_TRUSTED_ORIGINS = ["*"]
 
 # Application definition
 
@@ -83,6 +81,7 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         "DIRS": [
             path.normpath(path.join(BASE_DIR, "fhma/templates")),
+            path.normpath(path.join(BASE_DIR, "client/templates")),
         ],
         'APP_DIRS': True,
         'OPTIONS': {

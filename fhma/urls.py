@@ -15,7 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from client.views import add_client
 
 urlpatterns = [
+    path('add-client/', add_client, name='add_client'),
     path('', admin.site.urls),
 ]

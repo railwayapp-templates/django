@@ -13,6 +13,9 @@ class Supplies(models.Model):
     def __str__(self):
         return self.name
     
+    class Meta:
+        verbose_name_plural = "Supplies"
+    
 # SuppliesOrder
 class SuppliesOrder(models.Model):
     supplies = models.ForeignKey(Supplies, on_delete=models.CASCADE)
@@ -24,3 +27,6 @@ class SuppliesOrder(models.Model):
 
     def __str__(self):
         return f"{self.supplies} - {self.client}"
+
+    class Meta:
+        verbose_name_plural = "Supply Orders"
