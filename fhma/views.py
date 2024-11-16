@@ -40,6 +40,20 @@ def update_areaservice_breakdown():
     
     return breakdown
 
+def update_ethnicity_breakdown():
+    # Fetch all clients and group by ethnicity
+    ethnicity_breakdown = Client.objects.values('ethnicity').annotate(count=Count('id'))
+    
+    # Create the updated ethnicity breakdown list
+    breakdown = []
+    for item in ethnicity_breakdown:
+        breakdown.append({
+            "title": item['ethnicity'],
+            "value": item['count']
+        })
+    
+    return breakdown
+
 def dashboard_callback(request, context):
     WEEKDAYS = [
         "Mon",
@@ -116,6 +130,7 @@ def dashboard_callback(request, context):
                 },
             ],
             "zipcode_breakdown": update_areaservice_breakdown(),
+            "ethnicity_breakdown": update_ethnicity_breakdown(),
             "performance": [
                 {
                     "title": _("Inconcient Supplies Over Times"),

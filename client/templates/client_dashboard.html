@@ -50,16 +50,5 @@
                 {% endcomponent %}
             {% endcomponent %}
         {% endcomponent %}
-        
-        {% component "unfold/components/flex.html" with class="gap-8 mb-8 flex-col lg:flex-row" %}
-            {% trans "Areas Served" as title %}
-            {% component "unfold/components/card.html" with class="lg:w-1/2" title=title %}                
-                {% component "unfold/components/flex.html" with col=1 class="gap-5" %}
-                    {% for metric in zipcode_breakdown %}
-                        {% component "unfold/components/progress.html" with title=metric.title value=metric.value %}{% endcomponent %}
-                    {% endfor %}                    
-                {% endcomponent %}
-            {% endcomponent %}
-        {% endcomponent %}
     {% endcomponent %}
 {% endblock %}

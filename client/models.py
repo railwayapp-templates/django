@@ -21,13 +21,13 @@ class Ethnicity(models.TextChoices):
 # Client model
 class Client(models.Model):
     name = models.CharField(max_length=200)
-    email = models.EmailField(max_length=200)
-    phone = models.CharField(max_length=20)
-    address = models.CharField(max_length=200)
-    city = models.CharField(max_length=200)
-    state = models.CharField(max_length=200)
-    country = models.CharField(max_length=200)
-    zipcode = models.CharField(max_length=200, null=True)
+    email = models.EmailField(max_length=200, null=True, blank=True)
+    phone = models.CharField(max_length=20, null=True, blank=True)
+    address = models.CharField(max_length=200, null=True, blank=True)
+    city = models.CharField(max_length=200, null=True, blank=True)
+    state = models.CharField(max_length=200, null=True, blank=True)
+    country = models.CharField(max_length=200, null=True, blank=True)
+    zipcode = models.CharField(max_length=200, null=True, blank=True)
     area_serviced = models.ForeignKey(AreaServiced, on_delete=models.CASCADE, null=True)
     ethnicity = models.CharField(
         max_length=2,

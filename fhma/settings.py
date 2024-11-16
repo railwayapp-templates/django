@@ -245,6 +245,12 @@ UNFOLD = {
                 "separator": True,  # Top border
                 "collapsible": True,  # Collapsible group of links
                 "items": [
+                    # {
+                    #     "title": _("Client Dashboard"),
+                    #     "icon": "dashboard",
+                    #     "link": reverse_lazy("admin:dashboard_client"),
+                    #     "permission": lambda request: request.user.has_perm('events.view_client'),
+                    # },
                     {
                         "title": _("Area Serviced"),
                         "icon": "location_city",
