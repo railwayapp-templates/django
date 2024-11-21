@@ -309,11 +309,23 @@ UNFOLD = {
                 "collapsible": True,  # Collapsible group of links
                 "items": [
                     {
-                        "title": _("Survey"),
-                        "icon": "list",
+                        "title": _("Evaluation Survey"),
+                        "icon": "check_circle",
                         "link": reverse_lazy("admin:survey_survey_changelist"),
                         "permission": lambda request: request.user.has_perm('events.view_survey'),
                     },
+                    {
+                        "title": _("2024 Client Survey"),
+                        "icon": "calendar_today",
+                        "link": reverse_lazy("admin:survey_clientsurvey2024_changelist"),
+                        "permission": lambda request: request.user.has_perm('events.view_survey'),
+                    },
+                    {
+                        "title": _("Surveyor"),
+                        "icon": "person",
+                        "link": reverse_lazy("admin:survey_surveyor_changelist"),
+                        "permission": lambda request: request.user.has_perm('events.view_survey'),
+                    }
                 ],
             },
             {
