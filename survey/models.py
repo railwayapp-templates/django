@@ -1,5 +1,5 @@
 from django.db import models
-from client.models import Client
+from client.models import Client, AreaServiced
 
 # Surveyor Profile 
 class Surveyor(models.Model):
@@ -15,7 +15,7 @@ class Surveyor(models.Model):
 # Evaluation Survey
 class Survey(models.Model):
     client = models.ForeignKey(Client, on_delete=models.CASCADE, null=True, blank=True)
-    survior = models.ForeignKey(Surveyor, on_delete=models.CASCADE, null=True, blank=True)
+    area_serviced = models.ForeignKey(AreaServiced, on_delete=models.CASCADE, null=True, blank=True)
     meet_expectations = models.BooleanField(
         choices=[(True, 'Yes'), (False, 'No')], 
         default=False,
@@ -57,8 +57,8 @@ class Survey(models.Model):
 
 # 2024 Client Survey
 class ClientSurvey2024(models.Model):
-    client = models.ForeignKey(Client, on_delete=models.CASCADE, null=True, blank=True)
     survior = models.ForeignKey(Surveyor, on_delete=models.CASCADE, null=True, blank=True)
+    area_serviced = models.ForeignKey(AreaServiced, on_delete=models.CASCADE, null=True, blank=True)
     uti_lastyear = models.BooleanField(
         choices=[(True, 'Yes'), (False, 'No')], 
         default=False,

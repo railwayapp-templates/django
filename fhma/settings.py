@@ -233,11 +233,11 @@ UNFOLD = {
                     #     "icon": "local_shipping",
                     #     "link": reverse_lazy("admin:index"),
                     # },
-                    # {
-                    #     "title": _("Client Dashboard"),
-                    #     "icon": "people",
-                    #     "link": reverse_lazy("admin:index"),
-                    # },
+                    {
+                        "title": _("Client Dashboard"),
+                        "icon": "people",
+                        "link": "/client-dashboard",
+                    },
                 ],
             },
             {

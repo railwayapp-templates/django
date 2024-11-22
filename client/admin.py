@@ -1,6 +1,9 @@
 from django.contrib import admin
+from django.urls import path
+from django.views.generic import TemplateView
 
 from unfold.admin import ModelAdmin
+from unfold.views import UnfoldModelAdminViewMixin
 
 from .models import Client, AreaServiced
 
