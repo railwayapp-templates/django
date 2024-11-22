@@ -15,3 +15,4 @@ class DonationAdmin(ModelAdmin):
     list_display = ['donor', 'amount', 'date']
     search_fields = ['donor__name', 'amount', 'date']
     list_filter = ['date']
+    autocomplete_fields = ['donor']
