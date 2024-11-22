@@ -4,5 +4,5 @@ from .views import ClientDashboardView
 app_name = 'client'
 
 urlpatterns = [
-    path('dashboard/', ClientDashboardView.as_view(), name='client_dashboard'),
+    
 ]

@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     'survey',
     'supplies',
     'donor',
+    'dashboards'
 ]
 
 MIDDLEWARE = [
@@ -236,7 +237,7 @@ UNFOLD = {
                     {
                         "title": _("Client Dashboard"),
                         "icon": "people",
-                        "link": "/client-dashboard",
+                        "link": reverse_lazy("admin:client_dashboard"),
                     },
                 ],
             },

@@ -19,6 +19,6 @@ from client.views import add_client
 
 urlpatterns = [
     path('add-client/', add_client, name='add_client'),
-    path('client/', include('client.urls', namespace='client')),
+    path('dashboards/', include('dashboards.urls', namespace='dashboards')),
     path('', admin.site.urls),
 ]

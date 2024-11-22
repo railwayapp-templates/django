@@ -1,6 +1,8 @@
 {% extends 'unfold/layouts/base_simple.html' %}
-
 {% load i18n unfold %}
+
+
+{% block breadcrumbs %}{% endblock %}
 
 {% block title %}
     {% trans 'Client Dashboard' %} | {{ site_title|default:_('Portal') }}
@@ -28,32 +30,38 @@
             {% component "unfold/components/navigation.html" with items=navigation %}{% endcomponent %}
         {% endcomponent %}
 
-        {% component "unfold/components/flex.html" with class="gap-8 mb-8 flex-col lg:flex-row" %}
-            {% component "unfold/components/card.html" with class="lg:w-1/3" %}
+        {% include "client_services.html" %}
+
+        {% component "unfold/components/flex.html" with class="gap-4 mb-8 flex-wrap" %}
+            {% component "unfold/components/card.html" with class="lg:w-1/2" %}
                 {% component "unfold/components/text.html" %}
                     {% trans "Total Clients" %}
                 {% endcomponent %}   
-
+                {% component "unfold/components/separator.html" %}{% endcomponent %}
                 {% component "unfold/components/title.html" %}
                     {{ total_clients }}
                 {% endcomponent %}                                  
             {% endcomponent %}
-        {% endcomponent %}
-        
-        {% component "unfold/components/flex.html" with class="gap-8 mb-8 flex-col lg:flex-row" %}
-            {% trans "Clients by Ethnicity" as title %}
-            {% component "unfold/components/card.html" with class="lg:w-1/2" title=title %}                
+            
+            {% component "unfold/components/card.html" with class="lg:w-1/2" %}
+                {% trans "Clients by Ethnicity" as title %}
+                {% component "unfold/components/text.html" %}
+                    {{ title }}
+                {% endcomponent %}
+                {% component "unfold/components/separator.html" %}{% endcomponent %}
                 {% component "unfold/components/flex.html" with col=1 class="gap-5" %}
                     {% for metric in ethnicity_breakdown %}
                         {% component "unfold/components/progress.html" with title=metric.title value=metric.value %}{% endcomponent %}
                     {% endfor %}                    
                 {% endcomponent %}
             {% endcomponent %}
-        {% endcomponent %}
-        
-        {% component "unfold/components/flex.html" with class="gap-8 mb-8 flex-col lg:flex-row" %}
-            {% trans "Areas Served" as title %}
-            {% component "unfold/components/card.html" with class="lg:w-1/2" title=title %}                
+            
+            {% component "unfold/components/card.html" with class="lg:w-1/2" %}
+                {% trans "Areas Served" as title %}
+                {% component "unfold/components/text.html" %}
+                    {{ title }}
+                {% endcomponent %}
+                {% component "unfold/components/separator.html" %}{% endcomponent %}
                 {% component "unfold/components/flex.html" with col=1 class="gap-5" %}
                     {% for metric in zipcode_breakdown %}
                         {% component "unfold/components/progress.html" with title=metric.title value=metric.value %}{% endcomponent %}

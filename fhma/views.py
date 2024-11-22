@@ -97,7 +97,7 @@ def dashboard_callback(request, context):
                 {"title": _("Dashboard"), "link": "/", "active": True},
                 {"title": _("Equipment Dashboard"), "link": "#"},
                 {"title": _("Supplies Dashboard"), "link": "#"},
-                {"title": _("Client Dashboard"), "link": "#"},
+                {"title": _("Client Dashboard"), "link": "/dashboards/clientdashboard/dashboards/client"},
             ],
             "filters": [
                 {"title": _("All"), "link": "#", "active": True},
