@@ -108,7 +108,7 @@ def dashboard_callback(request, context):
             ],
             "kpi": [
                 {
-                    "title": "Number of Clients Surived",
+                    "title": "Number of Clients",
                     "metric": f"{intcomma(total_number_of_clients)}",
                     "footer": mark_safe(
                         f'Total number of clients reached and logged in the system'

@@ -9,13 +9,12 @@ class Surveyor(models.Model):
     organization = models.CharField(max_length=100, null=True, blank=True)
 
     class Meta:
-        verbose_name = "Survior Profile"
-        verbose_name_plural = "Surviors Profiles"
+        verbose_name = "Surveyor Profile"
+        verbose_name_plural = "Surveyors Profiles"
 
 # Evaluation Survey
 class Survey(models.Model):
     client = models.ForeignKey(Client, on_delete=models.CASCADE, null=True, blank=True)
-    area_serviced = models.ForeignKey(AreaServiced, on_delete=models.CASCADE, null=True, blank=True)
     meet_expectations = models.BooleanField(
         choices=[(True, 'Yes'), (False, 'No')], 
         default=False,
@@ -46,6 +45,14 @@ class Survey(models.Model):
         verbose_name="Would you refer your friends to our service?",
         help_text="Please select Yes or No"
     )
+    zipcode = models.CharField(
+        max_length=10, 
+        null=True, 
+        blank=True,
+        verbose_name="Zipcode",
+        help_text="Please provide your zipcode"
+    )
+
     date = models.DateField(auto_now_add=True)
     
     def __str__(self):
@@ -57,8 +64,14 @@ class Survey(models.Model):
 
 # 2024 Client Survey
 class ClientSurvey2024(models.Model):
-    survior = models.ForeignKey(Surveyor, on_delete=models.CASCADE, null=True, blank=True)
-    area_serviced = models.ForeignKey(AreaServiced, on_delete=models.CASCADE, null=True, blank=True)
+    survior = models.ForeignKey(
+        Surveyor, 
+        on_delete=models.CASCADE, 
+        null=True, 
+        blank=True,
+        verbose_name="Surveyor",
+        help_text="Please select the surveyor"
+    )
     uti_lastyear = models.BooleanField(
         choices=[(True, 'Yes'), (False, 'No')], 
         default=False,
@@ -107,6 +120,21 @@ class ClientSurvey2024(models.Model):
         verbose_name="Has having incontinent products helped you to leave home more to:",
         help_text="Please select the appropriate option"
     )
+    other_comments = models.TextField(
+        blank=True, 
+        null=True,
+        verbose_name="Additional Comments",
+        help_text="Please provide any additional comments"
+    )
+    zipcodes = models.CharField(
+        max_length=10, 
+        null=True, 
+        blank=True,
+        verbose_name="Zipcode",
+        help_text="Please provide your zipcode"
+    )
+
+
 
     class Meta:
         verbose_name = "2024 Client Survey"
