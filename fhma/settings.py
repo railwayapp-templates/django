@@ -220,7 +220,7 @@ UNFOLD = {
                 "collapsible": False,  # Collapsible group of links
                 "items": [
                     {
-                        "title": _("Dashboard"),
+                        "title": _("Home"),
                         "icon": "dashboard",
                         "link": reverse_lazy("admin:index"),
                     },
