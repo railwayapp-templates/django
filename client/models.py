@@ -127,6 +127,11 @@ class Client(models.Model):
         verbose_name="Is the client disabled?",
         help_text="Please select Yes or No"
     )
+    is_active = models.BooleanField(
+        default=True,
+        verbose_name="Is the client active?",
+        help_text="Please select Yes or No"
+    )
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
