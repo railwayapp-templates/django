@@ -41,6 +41,8 @@ class AreaServicedAdmin(ModelAdmin):
 class ClientAdmin(ModelAdmin):
     warn_unsaved_form = True  # Default: False
     list_disable_select_all = True 
+    # Display fields in changeform in compressed mode
+    compressed_fields = True  # Default: False
 
     list_display = ["name", "area_serviced", "is_active"]
     search_fields = ["name", "email", "phone", "address", "city", "state", "country", "area_serviced__name", "is_active"]

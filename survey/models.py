@@ -17,7 +17,6 @@ class Surveyor(models.Model):
 
 # Evaluation Survey
 class Survey(models.Model):
-    client = models.ForeignKey(Client, on_delete=models.CASCADE, null=True, blank=True)
     meet_expectations = models.BooleanField(
         choices=[(True, 'Yes'), (False, 'No')], 
         default=False,
