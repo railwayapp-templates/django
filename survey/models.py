@@ -131,7 +131,6 @@ class ClientSurvey2024(models.Model):
         verbose_name="Zipcode",
         help_text="Please provide your zipcode"
     )
-
     surveyor = models.ForeignKey(
         Surveyor, 
         on_delete=models.CASCADE, 
@@ -139,6 +138,12 @@ class ClientSurvey2024(models.Model):
         blank=True,
         verbose_name="Surveyor",
         help_text="Please select the surveyor"
+    )
+    date = models.DateField(
+        null=True,
+        blank=True,
+        verbose_name="Date of Survey",
+        help_text="Please provide the date of the survey"
     )
 
     class Meta:

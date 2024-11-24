@@ -30,6 +30,12 @@ class Supplies(models.Model):
     
 # SuppliesOrder
 class SuppliesOrder(models.Model):
+    client = models.ForeignKey(
+        Client,
+        on_delete=models.CASCADE,
+        verbose_name="Client associated with the order",
+        help_text="Please select the client associated with the order"
+    )
     supplies = models.ForeignKey(
         Supplies, 
         on_delete=models.CASCADE,
@@ -47,12 +53,6 @@ class SuppliesOrder(models.Model):
         default=1,
         verbose_name="Supply Quantity",
         help_text="Please provide the supply quantity"
-    )
-    client = models.ForeignKey(
-        Client,
-        on_delete=models.CASCADE,
-        verbose_name="Client associated with the order",
-        help_text="Please select the client associated with the order"
     )
     delivery_date = models.DateField(
         verbose_name="Supply Recieved Date",
