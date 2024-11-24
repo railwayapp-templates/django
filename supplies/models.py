@@ -36,6 +36,13 @@ class SuppliesOrder(models.Model):
         verbose_name="Supply associated with the order",
         help_text="Please select the supply associated with the order"
     )
+    supplies_other = models.CharField(
+        max_length=256,
+        null=True,
+        blank=True,
+        verbose_name="Other supplies not listed above",
+        help_text="Please provide the supply name if not listed above"
+    )
     quantity = models.IntegerField(
         default=1,
         verbose_name="Supply Quantity",
@@ -48,7 +55,7 @@ class SuppliesOrder(models.Model):
         help_text="Please select the client associated with the order"
     )
     delivery_date = models.DateField(
-        verbose_name="Supply Delivery Date",
+        verbose_name="Supply Recieved Date",
         help_text="Please provide the supply delivery date in the following format with dashes (year-month-date) or use the date selected on the right."
     )
     created_at = models.DateTimeField(auto_now_add=True)

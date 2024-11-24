@@ -4,6 +4,7 @@ from django.utils.translation import gettext_lazy as _
 from unfold.admin import ModelAdmin, TabularInline
 
 from .models import Client, AreaServiced
+from .forms import ClientForm
 from supplies.models import SuppliesOrder
 from equipment.models import Order
 
@@ -39,6 +40,7 @@ class AreaServicedAdmin(ModelAdmin):
 
 @admin.register(Client)
 class ClientAdmin(ModelAdmin):
+    form = ClientForm
     warn_unsaved_form = True  # Default: False
     list_disable_select_all = True 
     # Display fields in changeform in compressed mode
@@ -59,7 +61,7 @@ class ClientAdmin(ModelAdmin):
                 "classes": ["tab"],
                 "fields": [
                     "name",
-                    "age",
+                    "area_serviced",
                     "is_active",
                     "email",
                     "phone",
@@ -76,6 +78,8 @@ class ClientAdmin(ModelAdmin):
             {
                 "classes": ["tab"],
                 "fields": [
+                    "age",
+                    "gender",
                     "ethnicity",
                     "below_poverty_line",
                     "homeless",

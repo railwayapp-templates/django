@@ -26,6 +26,10 @@ class Ethnicity(models.TextChoices):
     WHITE = 'WH', 'White'
     OTHER = 'OT', 'Other'
 
+# Gender choices
+class Gender(models.TextChoices):
+    MALE = 'MA', 'Male'
+    FEMALE = 'FE', 'Female'
 
 # Client model
 class Client(models.Model):
@@ -46,6 +50,14 @@ class Client(models.Model):
         help_text="Please provide the clients age",
         null=True,
         blank=True
+    )
+    gender = models.CharField(
+        max_length=2,
+        null=True,
+        blank=True,
+        choices=Gender.choices,
+        verbose_name="What is the clients gender?",
+        help_text="Please select from the options provided"
     )
     email = models.EmailField(
         max_length=200, 
