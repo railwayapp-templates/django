@@ -19,6 +19,11 @@ from .models import Equipment, Order
 
 @admin.register(Equipment)
 class EquipmentAdmin(ModelAdmin):
+    warn_unsaved_form = True  # Default: False
+    list_disable_select_all = True 
+    # Display fields in changeform in compressed mode
+    compressed_fields = True  # Default: False
+
     list_display = ["name", "stock", "barcode"]
     search_fields = ["name", "barcode"]
     list_filter = ["stock", "name"]
@@ -29,6 +34,11 @@ class OrderStatuc(TextChoices):
 
 @admin.register(Order)
 class OrderAdmin(ModelAdmin):
+    warn_unsaved_form = True  # Default: False
+    list_disable_select_all = True 
+    # Display fields in changeform in compressed mode
+    compressed_fields = True  # Default: False
+
     list_display = ["client", "show_status_customized_color", "equipment", "quantity"]
     list_filter = ["status", "client"]
     list_display_links = ["client", "show_status_customized_color", "equipment", "quantity"]

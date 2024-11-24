@@ -83,7 +83,6 @@ class ZipcodeSurvey(models.Model):
 class ClientSurvey2024(models.Model):
     uti_lastyear = models.BooleanField(
         choices=[(True, 'Yes'), (False, 'No')], 
-        default=False,
         verbose_name="Have you had a Urinary Tract Infection (UTI) in the last year?",
         help_text="Please select Yes or No"
     )
@@ -101,15 +100,12 @@ class ClientSurvey2024(models.Model):
             ('Further than a mile but within five miles', 'Further than a mile but within five miles'),
             ('Further than five miles', 'Further than five miles')
         ],
-        default='Within a mile',
         verbose_name="How far away from health care do you live?",
         help_text="Please select the appropriate option"
     )
 
-
     used_leakage_items = models.BooleanField(
         choices=[(True, 'Yes'), (False, 'No')],
-        default=False,
         verbose_name="Have you ever used items to assist with leakage other than adult diapers, bladder pads/products (such as towels, sheets, washcloths etc.)?",
         help_text="Please select Yes or No"
     )
