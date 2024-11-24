@@ -11,20 +11,20 @@
         </p>
 
         <div class="flex flex-col gap-4 mt-4 lg:flex-row lg:items-center">
-            {% component "components/button.html" with href="/equipment/order/add/" %}
-                {% trans "New Equipment Order" %}
+            {% component "components/button.html" with href="/client/client/add/" %}
+                {% trans "New Client" %}
             {% endcomponent %} 
 
             {% component "components/button.html" with href="/supplies/suppliesorder/add/" %}
                 {% trans "New Incontinent Supply Order" %}
             {% endcomponent %} 
 
-            {% component "components/button.html" with href="/client/client/add/" %}
-                {% trans "New Client" %}
+            {% component "components/button.html" with href="/equipment/order/add/" %}
+                {% trans "New Durable Medical Equipment Order" %}
             {% endcomponent %} 
 
             {% component "components/button.html" with href="/documentation" variant="default" %}
-                {% trans "Documentation" %}
+                {% trans "How To Guides" %}
             {% endcomponent %}  
         </div>
     </div>
