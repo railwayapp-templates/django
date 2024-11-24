@@ -8,6 +8,9 @@ class Surveyor(models.Model):
     phone = models.CharField(max_length=20, null=True, blank=True)
     organization = models.CharField(max_length=100, null=True, blank=True)
 
+    def __str__(self):
+        return f"{self.name}"
+    
     class Meta:
         verbose_name = "Surveyor Profile"
         verbose_name_plural = "Surveyors Profiles"
@@ -62,16 +65,9 @@ class Survey(models.Model):
         verbose_name = "Evaluation Survey"
         verbose_name_plural = "Evaluation Surveys"
 
+
 # 2024 Client Survey
 class ClientSurvey2024(models.Model):
-    survior = models.ForeignKey(
-        Surveyor, 
-        on_delete=models.CASCADE, 
-        null=True, 
-        blank=True,
-        verbose_name="Surveyor",
-        help_text="Please select the surveyor"
-    )
     uti_lastyear = models.BooleanField(
         choices=[(True, 'Yes'), (False, 'No')], 
         default=False,
@@ -107,19 +103,10 @@ class ClientSurvey2024(models.Model):
         verbose_name="Have you ever used items to assist with leakage other than adult diapers, bladder pads/products (such as towels, sheets, washcloths etc.)?",
         help_text="Please select Yes or No"
     )
-    helped_leave_home = models.CharField(
-        max_length=50,
-        choices=[
-            ('Doctors appointments', 'Go to doctors appointments'),
-            ('Shop', 'Shop'),
-            ('Attend church', 'Attend church'),
-            ('Socialize', 'Socialize'),
-            ('Other', 'Other')
-        ],
-        default='Doctors appointments',
-        verbose_name="Has having incontinent products helped you to leave home more to:",
-        help_text="Please select the appropriate option"
-    )
+    # helped_leave_home = models.CharField(
+    #     max_length=256,
+        
+    # )
     other_comments = models.TextField(
         blank=True, 
         null=True,
@@ -132,6 +119,14 @@ class ClientSurvey2024(models.Model):
         blank=True,
         verbose_name="Zipcode",
         help_text="Please provide your zipcode"
+    )
+    survior = models.ForeignKey(
+        Surveyor, 
+        on_delete=models.CASCADE, 
+        null=True, 
+        blank=True,
+        verbose_name="Surveyor",
+        help_text="Please select the surveyor"
     )
 
 

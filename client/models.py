@@ -34,6 +34,19 @@ class Client(models.Model):
         verbose_name="Client Name",
         help_text="Please provide the clients name"
     )
+    area_serviced = models.ForeignKey(
+        AreaServiced, 
+        on_delete=models.CASCADE, 
+        null=True,
+        verbose_name="Area or City",
+        help_text="Please select from the options provided"
+    )
+    age = models.IntegerField(
+        verbose_name="Client Age",
+        help_text="Please provide the clients age",
+        null=True,
+        blank=True
+    )
     email = models.EmailField(
         max_length=200, 
         null=True, 
@@ -83,25 +96,12 @@ class Client(models.Model):
         verbose_name="Client Zipcode (Optional)",
         help_text="Please provide the clients zipcode"
     )
-    area_serviced = models.ForeignKey(
-        AreaServiced, 
-        on_delete=models.CASCADE, 
-        null=True,
-        verbose_name="Please select the area the client lives in",
-        help_text="Please select from the options provided"
-    )
     ethnicity = models.CharField(
         max_length=2,
         choices=Ethnicity.choices,
         default=Ethnicity.OTHER,
         verbose_name="What is the clients ethnicity?",
         help_text="Please select from the options provided"
-    )
-    birth_date = models.DateField(
-        null=True, 
-        blank=True, 
-        verbose_name="Client Date of Birth (Optional)", 
-        help_text="Please provide the clients date of birth"
     )
     below_poverty_line = models.BooleanField(
         null=True,

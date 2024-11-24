@@ -212,51 +212,17 @@ UNFOLD = {
         },
     },
     "SIDEBAR": {
-        "show_search": True,  # Search in applications and models names
-        "show_all_applications": True,  # Dropdown with all applications and models
+        "show_search": False,  # Search in applications and models names
+        "show_all_applications": False,  # Dropdown with all applications and models
         "navigation": [
             {
-                "title": _("Dashboards"),
-                "collapsible": True,  # Collapsible group of links
+                "title": _("Home"),
+                "collapsible": False,  # Collapsible group of links
                 "items": [
                     {
                         "title": _("Dashboard"),
                         "icon": "dashboard",
                         "link": reverse_lazy("admin:index"),
-                    },
-                    # {
-                    #     "title": _("Equipment Dashboard"),
-                    #     "icon": "accessible",
-                    #     "link": reverse_lazy("admin:dashboard_equipment"),
-                    # },
-                    # {
-                    #     "title": _("Supplies Dashboard"),
-                    #     "icon": "local_shipping",
-                    #     "link": reverse_lazy("admin:index"),
-                    # },
-                    {
-                        "title": _("Client Dashboard"),
-                        "icon": "people",
-                        "link": reverse_lazy("admin:client_dashboard"),
-                    },
-                ],
-            },
-            {
-                "title": _("Clients"),
-                "separator": True,  # Top border
-                "collapsible": True,  # Collapsible group of links
-                "items": [
-                    # {
-                    #     "title": _("Client Dashboard"),
-                    #     "icon": "dashboard",
-                    #     "link": reverse_lazy("admin:dashboard_client"),
-                    #     "permission": lambda request: request.user.has_perm('events.view_client'),
-                    # },
-                    {
-                        "title": _("Area Serviced"),
-                        "icon": "location_city",
-                        "link": reverse_lazy("admin:client_areaserviced_changelist"),
-                        "permission": lambda request: request.user.has_perm('events.view_location'),
                     },
                     {
                         "title": _("Clients"),
@@ -264,50 +230,87 @@ UNFOLD = {
                         "link": reverse_lazy("admin:client_client_changelist"),
                         "permission": lambda request: request.user.has_perm('events.view_client'),
                     },
-                ],
-            },
-            {
-                "title": _("Durable Medical Equipment"),
-                "separator": True,  # Top border
-                "collapsible": True,  # Collapsible group of links
-                "items": [
                     {
-                        "title": _("Rentals"),
-                        "icon": "shopping_cart",
-                        "link": reverse_lazy("admin:equipment_order_changelist"),
-                        "permission": lambda request: request.user.has_perm('events.view_device'),
-                    },
-                    {
-                        "title": _("Equipment"),
-                        "icon": "wheelchair_pickup",
-                        "link": reverse_lazy("admin:equipment_equipment_changelist"),
-                        "permission": lambda request: request.user.has_perm('events.view_location'),
-                    },
-                ],
-            },
-            {
-                "title": _("Incontinent Supplies"),
-                "separator": True,  # Top border
-                "collapsible": True,  # Collapsible group of links
-                "items": [
-                    {
-                        "title": _("Supplies"),
-                        "icon": "local_shipping",
-                        "link": reverse_lazy("admin:supplies_supplies_changelist"),
-                        "permission": lambda request: request.user.has_perm('events.view_device'),
-                    },
-                    {
-                        "title": _("Orders"),
+                        "title": _("Incontinent Supplies Order"),
                         "icon": "shopping_basket",
                         "link": reverse_lazy("admin:supplies_suppliesorder_changelist"),
                         "permission": lambda request: request.user.has_perm('events.view_location'),
                     },
+                    {
+                        "title": _("Durable Medical Equipment Order"),
+                        "icon": "wheelchair_pickup",
+                        "link": reverse_lazy("admin:equipment_order_changelist"),
+                        "permission": lambda request: request.user.has_perm('events.view_device'),
+                    },
                 ],
             },
+            # {
+            #     "title": _("Clients"),
+            #     "separator": True,  # Top border
+            #     "collapsible": False,  # Collapsible group of links
+            #     "items": [
+            #         # {
+            #         #     "title": _("Client Dashboard"),
+            #         #     "icon": "dashboard",
+            #         #     "link": reverse_lazy("admin:dashboard_client"),
+            #         #     "permission": lambda request: request.user.has_perm('events.view_client'),
+            #         # },
+            #         {
+            #             "title": _("Area Serviced"),
+            #             "icon": "location_city",
+            #             "link": reverse_lazy("admin:client_areaserviced_changelist"),
+            #             "permission": lambda request: request.user.has_perm('events.view_location'),
+            #         },
+            #         {
+            #             "title": _("Clients"),
+            #             "icon": "people",  # Example icon, change as needed
+            #             "link": reverse_lazy("admin:client_client_changelist"),
+            #             "permission": lambda request: request.user.has_perm('events.view_client'),
+            #         },
+            #     ],
+            # },
+            # {
+            #     "title": _("Durable Medical Equipment"),
+            #     "separator": True,  # Top border
+            #     "collapsible": True,  # Collapsible group of links
+            #     "items": [
+            #         {
+            #             "title": _("Rentals"),
+            #             "icon": "shopping_cart",
+            #             "link": reverse_lazy("admin:equipment_order_changelist"),
+            #             "permission": lambda request: request.user.has_perm('events.view_device'),
+            #         },
+            #         {
+            #             "title": _("Equipment"),
+            #             "icon": "wheelchair_pickup",
+            #             "link": reverse_lazy("admin:equipment_equipment_changelist"),
+            #             "permission": lambda request: request.user.has_perm('events.view_location'),
+            #         },
+            #     ],
+            # },
+            # {
+            #     "title": _("Incontinent Supplies"),
+            #     "separator": True,  # Top border
+            #     "collapsible": True,  # Collapsible group of links
+            #     "items": [
+            #         {
+            #             "title": _("Supplies"),
+            #             "icon": "local_shipping",
+            #             "link": reverse_lazy("admin:supplies_supplies_changelist"),
+            #             "permission": lambda request: request.user.has_perm('events.view_device'),
+            #         },
+            #         {
+            #             "title": _("Orders"),
+            #             "icon": "shopping_basket",
+            #             "link": reverse_lazy("admin:supplies_suppliesorder_changelist"),
+            #             "permission": lambda request: request.user.has_perm('events.view_location'),
+            #         },
+            #     ],
+            # },
             {
                 "title": _("Survey"),
                 "separator": True,  # Top border
-                "collapsible": True,  # Collapsible group of links
+                "collapsible": False,  # Collapsible group of links
                 "items": [
                     {
                         "title": _("Evaluation Survey"),
@@ -332,7 +335,7 @@ UNFOLD = {
             {
                 "title": _("Donor"),
                 "separator": True,  # Top border
-                "collapsible": True,  # Collapsible group of links
+                "collapsible": False,  # Collapsible group of links
                 "items": [
                     {
                         "title": _("Donor"),
@@ -351,7 +354,7 @@ UNFOLD = {
             {
                 "title": _("Users"),
                 "separator": True,  # Top border
-                "collapsible": True,  # Collapsible group of links
+                "collapsible": False,  # Collapsible group of links
                 "items": [
                     {
                         "title": _("Users"),

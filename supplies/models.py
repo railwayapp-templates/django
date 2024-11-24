@@ -13,12 +13,6 @@ class Supplies(models.Model):
         verbose_name="Supply Quantity",
         help_text="Please provide the supply quantity"
     )
-    price = models.FloatField(
-        null=True,
-        blank=True,
-        verbose_name="Supply Price",
-        help_text="Please provide the supply price"
-    )
     description = models.TextField(
         null=True,
         blank=True,

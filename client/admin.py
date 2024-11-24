@@ -15,7 +15,7 @@ class AreaServicedAdmin(ModelAdmin):
 
 @admin.register(Client)
 class ClientAdmin(ModelAdmin):
-    list_display = ["name", "email", "phone", "address", "city", "state", "area_serviced", "country"]
+    list_display = ["name", "area_serviced"]
     search_fields = ["name", "email", "phone", "address", "city", "state", "area_serviced", "country"]
     list_filter = ["name", "email", "phone", "address", "city", "state", "area_serviced", "country"]
     autocomplete_fields = ["area_serviced"]

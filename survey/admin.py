@@ -21,3 +21,4 @@ class ClientSurvey2024Admin(ModelAdmin):
     list_display = ["uti_lastyear"]
     search_fields = ["uti_lastyear"]
     list_filter = ["uti_lastyear"]
+    autocomplete_fields = ["survior"]
