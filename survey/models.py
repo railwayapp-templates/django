@@ -1,4 +1,5 @@
 from django.db import models
+from django import forms
 from client.models import Client, AreaServiced
 
 # Surveyor Profile 
@@ -65,6 +66,19 @@ class Survey(models.Model):
         verbose_name_plural = "Evaluation Surveys"
 
 
+# Zipcode Survey
+class ZipcodeSurvey(models.Model):
+    zipcode = models.CharField(
+        max_length=10, 
+        null=True, 
+        blank=True,
+        verbose_name="Zipcode",
+        help_text="Please provide your zipcode"
+    )
+
+    def __str__(self):
+        return f"{self.zipcode}"
+    
 # 2024 Client Survey
 class ClientSurvey2024(models.Model):
     uti_lastyear = models.BooleanField(
@@ -73,18 +87,13 @@ class ClientSurvey2024(models.Model):
         verbose_name="Have you had a Urinary Tract Infection (UTI) in the last year?",
         help_text="Please select Yes or No"
     )
-    medical_treatment = models.CharField(
-        max_length=20,
-        choices=[
-            ('Doctor', 'Doctor'),
-            ('ER', 'ER'),
-            ('Urgent Care', 'Urgent Care'),
-            ('N/A', 'N/A')
-        ],
-        default='N/A',
+
+    medical_treatment = models.JSONField(
+        default=list,
         verbose_name="If you sought medical care, did you have to see a doctor or go to the ER?",
-        help_text="Please select the appropriate option"
+        help_text="Please select the appropriate options"
     )
+
     distance_to_healthcare = models.CharField(
         max_length=50,
         choices=[
@@ -96,30 +105,38 @@ class ClientSurvey2024(models.Model):
         verbose_name="How far away from health care do you live?",
         help_text="Please select the appropriate option"
     )
+
+
     used_leakage_items = models.BooleanField(
         choices=[(True, 'Yes'), (False, 'No')],
         default=False,
         verbose_name="Have you ever used items to assist with leakage other than adult diapers, bladder pads/products (such as towels, sheets, washcloths etc.)?",
         help_text="Please select Yes or No"
     )
-    # helped_leave_home = models.CharField(
-    #     max_length=256,
-        
-    # )
+
+    helped_leave_home = models.JSONField(
+        default=list,
+        verbose_name="Has having incontinent products helped you to leave home more to:",
+        help_text="Please select the appropriate options"
+    )
+
     other_comments = models.TextField(
         blank=True, 
         null=True,
-        verbose_name="Additional Comments",
+        verbose_name="Additional Comments (Other)",
         help_text="Please provide any additional comments"
     )
-    zipcodes = models.CharField(
-        max_length=10, 
+
+    zipcode = models.ForeignKey(
+        ZipcodeSurvey, 
+        on_delete=models.CASCADE, 
         null=True, 
         blank=True,
         verbose_name="Zipcode",
         help_text="Please provide your zipcode"
     )
-    survior = models.ForeignKey(
+
+    surveyor = models.ForeignKey(
         Surveyor, 
         on_delete=models.CASCADE, 
         null=True, 
@@ -128,8 +145,9 @@ class ClientSurvey2024(models.Model):
         help_text="Please select the surveyor"
     )
 
-
-
     class Meta:
         verbose_name = "2024 Client Survey"
         verbose_name_plural = "2024 Client Surveys"
+    
+    def __str__(self):
+        return f"{self.zipcode} - {self.surveyor}"

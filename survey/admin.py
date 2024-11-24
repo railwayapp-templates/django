@@ -2,7 +2,8 @@ from django.contrib import admin
 
 from unfold.admin import ModelAdmin
 
-from .models import Survey, Surveyor, ClientSurvey2024
+from .models import Survey, Surveyor, ClientSurvey2024, ZipcodeSurvey
+from .forms import ClientSurvey2024Form
 
 @admin.register(Survey)
 class SurveyAdmin(ModelAdmin):
@@ -26,15 +27,24 @@ class SurveyorAdmin(ModelAdmin):
     search_fields = ["name", "email", "phone", "organization"]
     list_filter = ["name", "email", "phone", "organization"]
 
+@admin.register(ZipcodeSurvey)
+class ZipcodeSurveyAdmin(ModelAdmin):
+    list_display = ["zipcode"]
+    search_fields = ["zipcode"]
+    list_filter = ["zipcode"]
+
 @admin.register(ClientSurvey2024)
 class ClientSurvey2024Admin(ModelAdmin):
+    form = ClientSurvey2024Form
+
     # Display fields in changeform in compressed mode
     compressed_fields = True  # Default: False
 
     # Warn before leaving unsaved changes in changeform
     warn_unsaved_form = True  # Default: False
 
-    list_display = ["uti_lastyear"]
-    search_fields = ["uti_lastyear"]
-    list_filter = ["uti_lastyear"]
-    autocomplete_fields = ["survior"]
+    list_display = ["surveyor", "zipcode"]
+    search_fields = ["surveyor", "zipcode"]
+    list_filter = ["surveyor", "zipcode"]
+    list_display_links = ["surveyor", "zipcode"]
+    autocomplete_fields = ["surveyor", "zipcode"]
