@@ -49,7 +49,7 @@ class SuppliesOrder(models.Model):
     )
     delivery_date = models.DateField(
         verbose_name="Supply Delivery Date",
-        help_text="Please provide the supply delivery date"
+        help_text="Please provide the supply delivery date in the following format with dashes (year-month-date) or use the date selected on the right."
     )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
