@@ -122,7 +122,7 @@ def dashboard_callback(request, context):
                     ),
                 },
                 {
-                    "title": "Total number of inconcient supplies handed out",
+                    "title": "Inconcient supply orders",
                     "metric": f"{intcomma(total_number_of_inconcient_supplies)}",
                     "footer": mark_safe(
                         f'Total number of inconcient supply orders handed out'
@@ -133,7 +133,7 @@ def dashboard_callback(request, context):
             "ethnicity_breakdown": update_ethnicity_breakdown(),
             "performance": [
                 {
-                    "title": _("Inconcient Supplies Over Times"),
+                    "title": _("Inconcient Supply Orders Over Times"),
                     "metric": f"{intcomma(total_number_of_inconcient_supplies)}",
                     "footer": mark_safe(
                         'Inconcient supplies handed out over the last 90 days'
