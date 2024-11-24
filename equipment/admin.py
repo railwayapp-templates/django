@@ -18,7 +18,7 @@ from unfold.contrib.filters.admin import (
 from .models import Equipment, Order
 
 @admin.register(Equipment)
-class SaleAdmin(ModelAdmin):
+class EquipmentAdmin(ModelAdmin):
     list_display = ["name", "stock", "barcode"]
     search_fields = ["name", "barcode"]
     list_filter = ["stock", "name"]
@@ -29,9 +29,10 @@ class OrderStatuc(TextChoices):
 
 @admin.register(Order)
 class OrderAdmin(ModelAdmin):
-    list_display = ["equipment", "quantity", "client", "show_status_customized_color"]
-    search_fields = ["equipment", "client"]
+    list_display = ["client", "show_status_customized_color", "equipment", "quantity"]
     list_filter = ["status", "client"]
+    list_display_links = ["client", "show_status_customized_color", "equipment", "quantity"]
+    search_fields = ["equipment", "client"]
     autocomplete_fields = ["equipment", "client"]
     
     @display(

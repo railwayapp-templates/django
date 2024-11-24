@@ -42,7 +42,7 @@ class SuppliesOrder(models.Model):
         help_text="Please provide the supply quantity"
     )
     client = models.ForeignKey(
-        Client, 
+        Client,
         on_delete=models.CASCADE,
         verbose_name="Client associated with the order",
         help_text="Please select the client associated with the order"
