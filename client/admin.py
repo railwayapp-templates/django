@@ -10,12 +10,13 @@ from equipment.models import Order
 
 class SuppliesInline(TabularInline):
     model = SuppliesOrder
-    fields = ["supplies", "quantity", "delivery_date"]
-    readonly_fields = ["supplies", "quantity", "delivery_date"]
+    fields = ["delivery_date"]
+    readonly_fields = ["delivery_date"]
     ordering_field = "delivery_date"
     max_num = 0
     show_change_link = True
     tab = True
+    can_delete = False
     verbose_name = "Inconnient Supplies Order"
     verbose_name_plural = "Inconnient Supplies Orders"
 
@@ -27,6 +28,7 @@ class EquipmentInline(TabularInline):
     max_num = 0
     show_change_link = True
     tab = True
+    can_delete = False
     verbose_name = "Durable Medical Equipment Order"
     verbose_name_plural = "Durable Medical Equipment Orders"
 
