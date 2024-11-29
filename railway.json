@@ -4,6 +4,6 @@
         "builder": "NIXPACKS"
     },
     "deploy": {
-        "startCommand": "python manage.py migrate && && python manage.py loaddata fixtures/* && python manage.py collectstatic --noinput && gunicorn fhma.wsgi"
+        "startCommand": "python manage.py migrate && python manage.py loaddata fixtures/* && python manage.py collectstatic --noinput && gunicorn fhma.wsgi"
     }
 }
