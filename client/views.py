@@ -5,6 +5,7 @@ from django.db.models import Count
 
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
+from rest_framework import filters
 
 from .models import Client
 from .forms import ClientForm
@@ -26,3 +27,5 @@ class ClientsViewSet(viewsets.ModelViewSet):
     queryset = Client.objects.all()
     serializer_class = ClientSerializer
     permission_classes = [IsAuthenticated]
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['name']
