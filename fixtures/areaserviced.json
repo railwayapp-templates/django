@@ -88,5 +88,65 @@
             "created_at": "2024-01-01T00:00:00Z",
             "updated_at": "2024-01-01T00:00:00Z"
         }
+    },
+    {
+        "model": "client.areaserviced",
+        "pk": 10,
+        "fields": {
+            "name": "Herford, & Palominas",
+            "zipcode": "85615",
+            "created_at": "2024-01-01T00:00:00Z",
+            "updated_at": "2024-01-01T00:00:00Z"
+        }
+    },
+    {
+        "model": "client.areaserviced",
+        "pk": 11,
+        "fields": {
+            "name": "Tombstone",
+            "zipcode": "85638",
+            "created_at": "2024-01-01T00:00:00Z",
+            "updated_at": "2024-01-01T00:00:00Z"
+        }
+    },
+    {
+        "model": "client.areaserviced",
+        "pk": 12,
+        "fields": {
+            "name": "St. David",
+            "zipcode": "85630",
+            "created_at": "2024-01-01T00:00:00Z",
+            "updated_at": "2024-01-01T00:00:00Z"
+        }
+    }, 
+    {
+        "model": "client.areaserviced",
+        "pk": 13,
+        "fields": {
+            "name": "South East Sierra Vista",
+            "zipcode": "85650",
+            "created_at": "2024-01-01T00:00:00Z",
+            "updated_at": "2024-01-01T00:00:00Z"
+        }
+    },
+    {
+        "model": "client.areaserviced",
+        "pk": 14,
+        "fields": {
+            "name": "Wilcox",
+            "zipcode": "85643",
+            "created_at": "2024-01-01T00:00:00Z",
+            "updated_at": "2024-01-01T00:00:00Z"
+        }
+    },
+    {
+        "model": "client.areaserviced",
+        "pk": 15,
+        "fields": {
+            "name": "Elgin",
+            "zipcode": "85611",
+            "created_at": "2024-01-01T00:00:00Z",
+            "updated_at": "2024-01-01T00:00:00Z"
+        }
     }
 ]

@@ -9,6 +9,7 @@ SUPPLIES_URL = f"{API_BASE_URL}/supplies/"
 SUPPLY_ORDERS_URL = f"{API_BASE_URL}/supply_orders/"
 SUPPLY_ORDER_ITEMS_URL = f"{API_BASE_URL}/supply_order_items/"
 CLIENTS_URL = f"{API_BASE_URL}/clients/"
+AREAS_URL = f"{API_BASE_URL}/clients_area_serviced/"
 
 # CSV file path
 CSV_FILE_PATH = "./data/supplies.csv"
@@ -59,6 +60,14 @@ def format_age(age_str):
         return None
     
 # Helper functions to interact with the API
+def get_area_by_zipcode(zipcode):
+    response = requests.get(AREAS_URL, params={"search": zipcode}, auth=HTTPBasicAuth(USERNAME, PASSWORD))
+    response.raise_for_status()
+    areas = response.json()
+    if areas:
+        return areas[0]["id"]
+    return None
+
 def get_client_by_name(client_name):
     response = requests.get(CLIENTS_URL, params={"search": client_name}, auth=HTTPBasicAuth(USERNAME, PASSWORD))
     response.raise_for_status()
@@ -111,7 +120,7 @@ def ingest_data():
                 "veteran": row["Military Veteran?"].lower() == "yes",
                 "disabled": row["Disabled?"].lower() == "yes",
                 "is_active": True,
-                # "area_serviced": row["ZIPCODE"]
+                "area_serviced": get_area_by_zipcode(row["ZIPCODE"])
             }
             client_id = create_client(client_data)
 
