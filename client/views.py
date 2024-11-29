@@ -7,9 +7,9 @@ from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import filters
 
-from .models import Client
+from .models import Client, AreaServiced
 from .forms import ClientForm
-from .serializer import ClientSerializer
+from .serializer import ClientSerializer, AreaServicedSerializer
 
 def add_client(request):
     if request.method == 'POST':
@@ -22,6 +22,13 @@ def add_client(request):
         form = ClientForm()
     return render(request, 'add_client.html', {'form': form})
 
+
+class AreaServicedViewSet(viewsets.ModelViewSet):
+    queryset = AreaServiced.objects.all()
+    serializer_class = AreaServicedSerializer
+    permission_classes = [IsAuthenticated]
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['zipcode', 'name']
 
 class ClientsViewSet(viewsets.ModelViewSet):
     queryset = Client.objects.all()
