@@ -59,6 +59,21 @@ INSTALLED_APPS = [
 python manage.py collectstatic
 ```
 
+## Loading data from a fixture
+
+```bash
+python manage.py loaddata <fixture_name>
+```
+
+```bash
+python manage.py loaddata fixtures/areaserviced.json
+```
+
+```bash
+python manage.py loaddata fixtures/supplies.json
+```
+
+
 # Icons 
 The following icons are used in the application:
 [Google Material Icons](https://fonts.google.com/icons?icon.query=order&icon.size=24&icon.color=%23e8eaed)

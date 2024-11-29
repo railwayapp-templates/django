@@ -1,0 +1,92 @@
+[
+    {
+        "model": "client.areaserviced",
+        "pk": 1,
+        "fields": {
+            "name": "Benson",
+            "zipcode": "85602",
+            "created_at": "2024-01-01T00:00:00Z",
+            "updated_at": "2024-01-01T00:00:00Z"
+        }
+    },
+    {
+        "model": "client.areaserviced",
+        "pk": 2,
+        "fields": {
+            "name": "Sierra Vista",
+            "zipcode": "85635",
+            "created_at": "2024-01-01T00:00:00Z",
+            "updated_at": "2024-01-01T00:00:00Z"
+        }
+    },
+    {
+        "model": "client.areaserviced",
+        "pk": 3,
+        "fields": {
+            "name": "Douglas",
+            "zipcode": "85607",
+            "created_at": "2024-01-01T00:00:00Z",
+            "updated_at": "2024-01-01T00:00:00Z"
+        }
+    },
+    {
+        "model": "client.areaserviced",
+        "pk": 4,
+        "fields": {
+            "name": "Bisbee & Naco",
+            "zipcode": "85603",
+            "created_at": "2024-01-01T00:00:00Z",
+            "updated_at": "2024-01-01T00:00:00Z"
+        }
+    },
+    {
+        "model": "client.areaserviced",
+        "pk": 5,
+        "fields": {
+            "name": "Sonoita, & Greaterville",
+            "zipcode": "85637",
+            "created_at": "2024-01-01T00:00:00Z",
+            "updated_at": "2024-01-01T00:00:00Z"
+        }
+    },
+    {
+        "model": "client.areaserviced",
+        "pk": 6,
+        "fields": {
+            "name": "Nogales, Kino Springs, Ruby, & Beyerville",
+            "zipcode": "85621",
+            "created_at": "2024-01-01T00:00:00Z",
+            "updated_at": "2024-01-01T00:00:00Z"
+        }
+    },
+    {
+        "model": "client.areaserviced",
+        "pk": 7,
+        "fields": {
+            "name": "Patagonia, Lochiel, & Harshaw",
+            "zipcode": "85624",
+            "created_at": "2024-01-01T00:00:00Z",
+            "updated_at": "2024-01-01T00:00:00Z"
+        }
+    },
+    {
+        "model": "client.areaserviced",
+        "pk": 8,
+        "fields": {
+            "name": "Huachuca City, & Whetstone",
+            "zipcode": "85616",
+            "created_at": "2024-01-01T00:00:00Z",
+            "updated_at": "2024-01-01T00:00:00Z"
+        }
+    },
+    {
+        "model": "client.areaserviced",
+        "pk": 9,
+        "fields": {
+            "name": "Rio Rico, Tumacacori-Carmen, & Rio Rico",
+            "zipcode": "85648",
+            "created_at": "2024-01-01T00:00:00Z",
+            "updated_at": "2024-01-01T00:00:00Z"
+        }
+    }
+]

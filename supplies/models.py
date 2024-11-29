@@ -20,8 +20,8 @@ class Supplies(models.Model):
         verbose_name="Supply Description (Optional)",
         help_text="Please provide the supply description"
     )
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    updated_at = models.DateTimeField(auto_now=True, null=True, blank=True)
 
     def __str__(self):
         return self.name
