@@ -15,10 +15,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework import routers
 from client.views import add_client
+from supplies.views import SuppliesViewSet
+
+router = routers.SimpleRouter()
+router.register(r'supplies', SuppliesViewSet)
 
 urlpatterns = [
     path('add-client/', add_client, name='add_client'),
     path('dashboards/', include('dashboards.urls', namespace='dashboards')),
+    path('api/v1/', include(router.urls)),
     path('', admin.site.urls),
 ]
