@@ -1,0 +1,152 @@
+[
+    {
+        "model": "client.areaserviced",
+        "pk": 1,
+        "fields": {
+            "name": "Benson",
+            "zipcode": "85602",
+            "created_at": "2024-01-01T00:00:00Z",
+            "updated_at": "2024-01-01T00:00:00Z"
+        }
+    },
+    {
+        "model": "client.areaserviced",
+        "pk": 2,
+        "fields": {
+            "name": "Sierra Vista",
+            "zipcode": "85635",
+            "created_at": "2024-01-01T00:00:00Z",
+            "updated_at": "2024-01-01T00:00:00Z"
+        }
+    },
+    {
+        "model": "client.areaserviced",
+        "pk": 3,
+        "fields": {
+            "name": "Douglas",
+            "zipcode": "85607",
+            "created_at": "2024-01-01T00:00:00Z",
+            "updated_at": "2024-01-01T00:00:00Z"
+        }
+    },
+    {
+        "model": "client.areaserviced",
+        "pk": 4,
+        "fields": {
+            "name": "Bisbee & Naco",
+            "zipcode": "85603",
+            "created_at": "2024-01-01T00:00:00Z",
+            "updated_at": "2024-01-01T00:00:00Z"
+        }
+    },
+    {
+        "model": "client.areaserviced",
+        "pk": 5,
+        "fields": {
+            "name": "Sonoita, & Greaterville",
+            "zipcode": "85637",
+            "created_at": "2024-01-01T00:00:00Z",
+            "updated_at": "2024-01-01T00:00:00Z"
+        }
+    },
+    {
+        "model": "client.areaserviced",
+        "pk": 6,
+        "fields": {
+            "name": "Nogales, Kino Springs, Ruby, & Beyerville",
+            "zipcode": "85621",
+            "created_at": "2024-01-01T00:00:00Z",
+            "updated_at": "2024-01-01T00:00:00Z"
+        }
+    },
+    {
+        "model": "client.areaserviced",
+        "pk": 7,
+        "fields": {
+            "name": "Patagonia, Lochiel, & Harshaw",
+            "zipcode": "85624",
+            "created_at": "2024-01-01T00:00:00Z",
+            "updated_at": "2024-01-01T00:00:00Z"
+        }
+    },
+    {
+        "model": "client.areaserviced",
+        "pk": 8,
+        "fields": {
+            "name": "Huachuca City, & Whetstone",
+            "zipcode": "85616",
+            "created_at": "2024-01-01T00:00:00Z",
+            "updated_at": "2024-01-01T00:00:00Z"
+        }
+    },
+    {
+        "model": "client.areaserviced",
+        "pk": 9,
+        "fields": {
+            "name": "Rio Rico & Tumacacori-Carmen",
+            "zipcode": "85648",
+            "created_at": "2024-01-01T00:00:00Z",
+            "updated_at": "2024-01-01T00:00:00Z"
+        }
+    },
+    {
+        "model": "client.areaserviced",
+        "pk": 10,
+        "fields": {
+            "name": "Herford, & Palominas",
+            "zipcode": "85615",
+            "created_at": "2024-01-01T00:00:00Z",
+            "updated_at": "2024-01-01T00:00:00Z"
+        }
+    },
+    {
+        "model": "client.areaserviced",
+        "pk": 11,
+        "fields": {
+            "name": "Tombstone",
+            "zipcode": "85638",
+            "created_at": "2024-01-01T00:00:00Z",
+            "updated_at": "2024-01-01T00:00:00Z"
+        }
+    },
+    {
+        "model": "client.areaserviced",
+        "pk": 12,
+        "fields": {
+            "name": "St. David",
+            "zipcode": "85630",
+            "created_at": "2024-01-01T00:00:00Z",
+            "updated_at": "2024-01-01T00:00:00Z"
+        }
+    }, 
+    {
+        "model": "client.areaserviced",
+        "pk": 13,
+        "fields": {
+            "name": "South East Sierra Vista",
+            "zipcode": "85650",
+            "created_at": "2024-01-01T00:00:00Z",
+            "updated_at": "2024-01-01T00:00:00Z"
+        }
+    },
+    {
+        "model": "client.areaserviced",
+        "pk": 14,
+        "fields": {
+            "name": "Wilcox",
+            "zipcode": "85643",
+            "created_at": "2024-01-01T00:00:00Z",
+            "updated_at": "2024-01-01T00:00:00Z"
+        }
+    },
+    {
+        "model": "client.areaserviced",
+        "pk": 15,
+        "fields": {
+            "name": "Elgin",
+            "zipcode": "85611",
+            "created_at": "2024-01-01T00:00:00Z",
+            "updated_at": "2024-01-01T00:00:00Z"
+        }
+    }
+]

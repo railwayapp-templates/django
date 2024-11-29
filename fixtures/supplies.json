@@ -1,0 +1,263 @@
+[
+    {
+        "model": "supplies.supplies",
+        "pk": 1,
+        "fields": {
+            "name": "Wipes",
+            "description": "Wipes (20 per package)",
+            "quantity": 20
+        }
+    },
+    {
+        "model": "supplies.supplies",
+        "pk": 2,
+        "fields": {
+            "name": "Bed pads",
+            "description": "Bed pads (each)",
+            "quantity": 1
+        }
+    },
+    {
+        "model": "supplies.supplies",
+        "pk": 3,
+        "fields": {
+            "name": "S tabs – Men",
+            "description": "S tabs – Men (20 per package)",
+            "quantity": 20
+        }
+    },
+    {
+        "model": "supplies.supplies",
+        "pk": 4,
+        "fields": {
+            "name": "S Pull ups - Men",
+            "description": "S Pull ups - Men (20 per package)",
+            "quantity": 20
+        }
+    },
+    {
+        "model": "supplies.supplies",
+        "pk": 5,
+        "fields": {
+            "name": "S/M tabs - Men",
+            "description": "S/M tabs - Men (20 per package)",
+            "quantity": 20
+        }
+    },
+    {
+        "model": "supplies.supplies",
+        "pk": 6,
+        "fields": {
+            "name": "S/M Pull ups - Men",
+            "description": "S/M Pull ups - Men (20 per package)",
+            "quantity": 20
+        }
+    },
+    {
+        "model": "supplies.supplies",
+        "pk": 7,
+        "fields": {
+            "name": "M tabs - Men",
+            "description": "M tabs - Men (20 per package)",
+            "quantity": 20
+        }
+    },
+    {
+        "model": "supplies.supplies",
+        "pk": 8,
+        "fields": {
+            "name": "M Pull ups - Men",
+            "description": "M Pull ups - Men (20 per package)",
+            "quantity": 20
+        }
+    },
+    {
+        "model": "supplies.supplies",
+        "pk": 9,
+        "fields": {
+            "name": "L tabs - Men",
+            "description": "L tabs - Men (18 per package)",
+            "quantity": 18
+        }
+    },
+    {
+        "model": "supplies.supplies",
+        "pk": 10,
+        "fields": {
+            "name": "L Pull ups - Men",
+            "description": "L Pull ups - Men (18 per package)",
+            "quantity": 18
+        }
+    },
+    {
+        "model": "supplies.supplies",
+        "pk": 11,
+        "fields": {
+            "name": "XL tabs - Men",
+            "description": "XL tabs -Men (14 per package)",
+            "quantity": 14
+        }
+    },
+    {
+        "model": "supplies.supplies",
+        "pk": 12,
+        "fields": {
+            "name": "XL Pull ups - Men",
+            "description": "XL Pull ups - Men (14 per package)",
+            "quantity": 14
+        }
+    },
+    {
+        "model": "supplies.supplies",
+        "pk": 13,
+        "fields": {
+            "name": "XXL tabs - Men",
+            "description": "XXL tabs - Men (12 per package)",
+            "quantity": 12
+        }
+    },
+    {
+        "model": "supplies.supplies",
+        "pk": 14,
+        "fields": {
+            "name": "XXL Pull ups - Men",
+            "description": "XXL Pull ups - Men (12 per package)",
+            "quantity": 12
+        }
+    },
+    {
+        "model": "supplies.supplies",
+        "pk": 15,
+        "fields": {
+            "name": "Men's Guards",
+            "description": "Men's Guards",
+            "quantity": 18
+        }
+    },
+    {
+        "model": "supplies.supplies",
+        "pk": 16,
+        "fields": {
+            "name": "S tabs – Women",
+            "description": "S tabs – Women (20 per package)",
+            "quantity": 20
+        }
+    },
+    {
+        "model": "supplies.supplies",
+        "pk": 17,
+        "fields": {
+            "name": "S Pull ups - Women",
+            "description": "S Pull ups - Women (20 per package)",
+            "quantity": 20
+        }
+    },
+    {
+        "model": "supplies.supplies",
+        "pk": 18,
+        "fields": {
+            "name": "S/M tabs - Women",
+            "description": "S/M tabs - Women (20 per package)",
+            "quantity": 20
+        }
+    },
+    {
+        "model": "supplies.supplies",
+        "pk": 19,
+        "fields": {
+            "name": "S/M Pull ups - Women",
+            "description": "S/M Pull ups - Women (20 per package)",
+            "quantity": 20
+        }
+    },
+    {
+        "model": "supplies.supplies",
+        "pk": 20,
+        "fields": {
+            "name": "M tabs - Women",
+            "description": "M tabs - Women",
+            "quantity": 20
+        }
+    },
+    {
+        "model": "supplies.supplies",
+        "pk": 21,
+        "fields": {
+            "name": "M Pull ups - Women",
+            "description": "M Pull ups -Women (20 per package)",
+            "quantity": 20
+        }
+    },
+    {
+        "model": "supplies.supplies",
+        "pk": 22,
+        "fields": {
+            "name": "L tabs - Women",
+            "description": "L tabs - Women",
+            "quantity": 18
+        }
+    },
+    {
+        "model": "supplies.supplies",
+        "pk": 23,
+        "fields": {
+            "name": "L Pull ups - Women",
+            "description": "L Pull ups - Women (18 per package)",
+            "quantity": 18
+        }
+    },
+    {
+        "model": "supplies.supplies",
+        "pk": 24,
+        "fields": {
+            "name": "XL tabs - Women",
+            "description": "XL tabs -Women (14 per package)",
+            "quantity": 14
+        }
+    },
+    {
+        "model": "supplies.supplies",
+        "pk": 25,
+        "fields": {
+            "name": "XL Pull ups - Women",
+            "description": "XL Pull ups - Women (14 per package)",
+            "quantity": 14
+        }
+    },
+    {
+        "model": "supplies.supplies",
+        "pk": 26,
+        "fields": {
+            "name": "XXL tabs - Women",
+            "description": "XXL tabs - Women (12 per package)",
+            "quantity": 12
+        }
+    },
+    {
+        "model": "supplies.supplies",
+        "pk": 27,
+        "fields": {
+            "name": "XXL Pull ups - Women",
+            "description": "XXL Pull ups - Women (12 per package)",
+            "quantity": 12
+        }
+    },
+    {
+        "model": "supplies.supplies",
+        "pk": 28,
+        "fields": {
+            "name": "#4 Bladder pads",
+            "description": "#4 Bladder pads (18 per package)",
+            "quantity": 18
+        }
+    },
+    {
+        "model": "supplies.supplies",
+        "pk": 29,
+        "fields": {
+            "name": "#6 Bladder pads",
+            "description": "#6 Bladder pads (27 per package)",
+            "quantity": 27
+        }
+    }
+]
