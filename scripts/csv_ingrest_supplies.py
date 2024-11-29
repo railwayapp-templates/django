@@ -3,6 +3,8 @@ from datetime import datetime
 import requests
 from requests.auth import HTTPBasicAuth
 
+from supplies_helper import get_supplies_id
+
 # Define API endpoints
 API_BASE_URL = "http://localhost:8000/api/v1"
 SUPPLIES_URL = f"{API_BASE_URL}/supplies/"
@@ -107,7 +109,7 @@ def ingest_data():
         for row in reader:
             # Map client data
             client_data = {
-                "name": row["Recipients Name"],
+                "name": row["Recipient's Name"],
                 "age": format_age(row["Age"]) if row["Age"] else None,
                 "gender": format_gender(row["Gender"]),
                 "email": row["Email Address"],
@@ -117,7 +119,7 @@ def ingest_data():
                 "ethnicity": format_ethnicity(row["Race/Ethnicity"]),
                 "below_poverty_line": row["Under Poverty Level? (Below $1,250 a month)"].lower() == "yes",
                 "homeless": row["Homeless?"].lower() == "yes",
-                "veteran": row["Military Veteran?"].lower() == "yes",
+                "veteran": row["Military Veteran?"].lower() == "yes" if "Military Veteran?" in row else False,
                 "disabled": row["Disabled?"].lower() == "yes",
                 "is_active": True,
                 "area_serviced": get_area_by_zipcode(row["ZIPCODE"])
@@ -134,24 +136,22 @@ def ingest_data():
             print (f"Processing data for client: {client_data['name']}")
 
             # Map supplies and supply order items
-            for i in range(1, 6):  # Adjust range as needed for supply columns
-                supply_name = row.get(f"Incontinent Supplies Taken: [{i}]")
-                supply_quantity = row.get(f"Incontinent Supplies Taken and Quantity [{i}]")
+            for i in range(19, 48):  
+                # Get header name at index i
+                supply_name = reader.fieldnames[i]
+                supply_quantity = row[supply_name]
                 if supply_name and supply_quantity:
-                    supply_data = {
-                        "name": supply_name,
-                        "quantity": None,
-                        "description": ""
-                    }
-                    supply_id = create_supply(supply_data)
-
-                    supply_order_item_data = {
-                        "quantity": int(supply_quantity),
-                        "other_notes": "",
-                        "order": supply_order_id,
-                        "supplies": supply_id
-                    }
-                    create_supply_order_item(supply_order_item_data)
+                    supply_id = get_supplies_id(supply_name)
+                    supply_quantity = row[supply_name]
+                    if supply_id and supply_quantity:
+                        supply_order_item_data = {
+                            "quantity": int(supply_quantity),
+                            "other_notes": "",
+                            "order": supply_order_id,
+                            "supplies": supply_id
+                        }
+                        print (f"Creating supply order item for supply: {supply_name}")
+                        create_supply_order_item(supply_order_item_data)
 
 if __name__ == "__main__":
     try:

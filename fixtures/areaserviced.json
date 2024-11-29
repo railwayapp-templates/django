@@ -83,7 +83,7 @@
         "model": "client.areaserviced",
         "pk": 9,
         "fields": {
-            "name": "Rio Rico, Tumacacori-Carmen, & Rio Rico",
+            "name": "Rio Rico & Tumacacori-Carmen",
             "zipcode": "85648",
             "created_at": "2024-01-01T00:00:00Z",
             "updated_at": "2024-01-01T00:00:00Z"
