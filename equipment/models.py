@@ -34,6 +34,14 @@ class DMEOrder(models.Model):
         RENTED = 'RT', 'Rented'
         RETURNED = 'RU', 'Returned'
     
+    class TimeNeeded(models.TextChoices):
+        WEEK_1 = '1W', '1 Week'
+        WEEK_2 = '2W', '2 Weeks'
+        MONTH_1 = '1M', '1 Month'
+        MONTH_3 = '3M', '3 Months'
+        MONTH_6 = '6M', '6 Months'
+        YEAR_1 = '1Y', '1 Year'
+    
     client = models.ForeignKey(
         Client, 
         on_delete=models.CASCADE,
@@ -46,6 +54,13 @@ class DMEOrder(models.Model):
         default=Status.RENTED,
         verbose_name="Order Status",
         help_text="Please select the order status"
+    )
+    time_needed = models.CharField(
+        max_length=2,
+        choices=TimeNeeded.choices,
+        default=TimeNeeded.WEEK_1,
+        verbose_name="Time Needed",
+        help_text="Please select the time needed for the equipment"
     )
     rental_date = models.DateField(
         verbose_name="Rental Date",
