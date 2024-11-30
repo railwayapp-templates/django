@@ -6,7 +6,7 @@ from unfold.admin import ModelAdmin, TabularInline
 from .models import Client, AreaServiced
 from .forms import ClientForm
 from supplies.models import SuppliesOrder, OrderItem
-from equipment.models import Order
+from equipment.models import DMEOrder, DMEOrderItem
 
 class SuppliesInline(TabularInline):
     model = SuppliesOrder
@@ -27,16 +27,22 @@ class SuppliesInline(TabularInline):
         return ", ".join([f"{item.supplies.name} ({item.quantity})" for item in items])
 
 class EquipmentInline(TabularInline):
-    model = Order
-    fields = ["equipment", "status", "quantity"]
-    readonly_fields = ["equipment", "quantity"]
-    ordering_field = "status"
+    model = DMEOrder
+    fields = ["equipment", "rental_date", "status"]
+    readonly_fields = ["equipment", "rental_date"]
+    ordering_field = ["equipment", "rental_date", "status"]
     max_num = 0
     show_change_link = True
     tab = True
     can_delete = False
     verbose_name = "Durable Medical Equipment Order"
     verbose_name_plural = "Durable Medical Equipment Orders"
+
+    def equipment(self, obj):
+        # Display the equipment order items associated with the order
+        items = DMEOrderItem.objects.filter(order=obj)
+        # Display equipment name and quantity 
+        return ", ".join([f"{item.equipment.name} ({item.quantity})" for item in items])
 
 @admin.register(AreaServiced)
 class AreaServicedAdmin(ModelAdmin):

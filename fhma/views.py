@@ -12,7 +12,7 @@ from django.db.models import F, Count
 from unfold.views import UnfoldModelAdminViewMixin
 
 from client.models import Client, AreaServiced
-from equipment.models import Order
+from equipment.models import DMEOrder
 from supplies.models import Supplies, SuppliesOrder
 
 class HomeView(RedirectView):
@@ -66,8 +66,8 @@ def dashboard_callback(request, context):
     ]
 
     total_number_of_clients = Client.objects.count()
-    total_number_of_outstanding_rentals = Order.objects.filter(status="RT").count()
-    total_number_of_rentals = Order.objects.count()
+    total_number_of_outstanding_rentals = DMEOrder.objects.filter(status="RT").count()
+    total_number_of_rentals = DMEOrder.objects.count()
     total_number_of_inconcient_supplies = SuppliesOrder.objects.count()
 
     ## INCONCIENT SUPPLIES OVER TIME
@@ -84,7 +84,7 @@ def dashboard_callback(request, context):
 
     ## EQUIPMENT ORDERS OVER TIME
     # Get Order over the last 90 days
-    recent_orders = Order.objects.filter(last_updated__gte=ninety_days_ago)
+    recent_orders = DMEOrder.objects.filter(last_updated__gte=ninety_days_ago)
     # Annotate and group by date
     orders_by_date = recent_orders.annotate(date=F('last_updated')).values('date').annotate(count=Count('id')).order_by('date')
     # Extract dates and counts

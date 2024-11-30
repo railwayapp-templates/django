@@ -1,0 +1,107 @@
+[
+    {
+        "model": "equipment.equipment",
+        "pk": 1,
+        "fields": {
+            "name": "Wheelchair"
+        }
+    },
+    {
+        "model": "equipment.equipment",
+        "pk": 2,
+        "fields": {
+            "name": "Transporter Chair"
+        }
+    },
+    {
+        "model": "equipment.equipment",
+        "pk": 3,
+        "fields": {
+            "name": "Metal Walker"
+        }
+    },
+    {
+        "model": "equipment.equipment",
+        "pk": 4,
+        "fields": {
+            "name": "Rollator"
+        }
+    },
+    {
+        "model": "equipment.equipment",
+        "pk": 5,
+        "fields": {
+            "name": "Bed side Commode"
+        }
+    },
+    {
+        "model": "equipment.equipment",
+        "pk": 6,
+        "fields": {
+            "name": "Toilet Riser"
+        }
+    },
+    {
+        "model": "equipment.equipment",
+        "pk": 7,
+        "fields": {
+            "name": "Shower Bench/Chair"
+        }
+    },
+    {
+        "model": "equipment.equipment",
+        "pk": 8,
+        "fields": {
+            "name": "Hospital Bed"
+        }
+    },
+    {
+        "model": "equipment.equipment",
+        "pk": 9,
+        "fields": {
+            "name": "Hoyer Lift"
+        }
+    },
+    {
+        "model": "equipment.equipment",
+        "pk": 10,
+        "fields": {
+            "name": "Crutches"
+        }
+    },
+    {
+        "model": "equipment.equipment",
+        "pk": 11,
+        "fields": {
+            "name": "Cane"
+        }
+    },
+    {
+        "model": "equipment.equipment",
+        "pk": 12,
+        "fields": {
+            "name": "Bed rails"
+        }
+    },
+    {
+        "model": "equipment.equipment",
+        "pk": 13,
+        "fields": {
+            "name": "Toilet rails"
+        }
+    },
+    {
+        "model": "equipment.equipment",
+        "pk": 14,
+        "fields": {
+            "name": "House oxygen concentrator"
+        }
+    },
+    {
+        "model": "equipment.equipment",
+        "pk": 15,
+        "fields": {
+            "name": "Portable oxygen concentrator"
+        }
+    }
+]

@@ -240,7 +240,7 @@ UNFOLD = {
                     {
                         "title": _("Durable Medical Equipment Order"),
                         "icon": "wheelchair_pickup",
-                        "link": reverse_lazy("admin:equipment_order_changelist"),
+                        "link": reverse_lazy("admin:equipment_dmeorder_changelist"),
                         "permission": lambda request: request.user.has_perm('events.view_device'),
                     },
                 ],
