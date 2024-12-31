@@ -18,6 +18,7 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from client.views import add_client, ClientsViewSet, AreaServicedViewSet
 from supplies.views import SuppliesViewSet, SupplyOrdersViewSet, SupplyOrderItemsViewSet
+from survey.views import ClientSurvey2024ViewSet, ZipcodeSurveyViewSet, SurveyorViewSet, SurveyViewSet
 
 router = DefaultRouter()
 router.register(r'supplies', SuppliesViewSet, basename='supplies')
@@ -25,6 +26,10 @@ router.register(r'supply_orders', SupplyOrdersViewSet, basename='supply_orders')
 router.register(r'supply_order_items', SupplyOrderItemsViewSet, basename='supply_order_items')
 router.register(r'clients', ClientsViewSet, basename='clients')
 router.register(r'clients_area_serviced', AreaServicedViewSet, basename='area_serviced')
+router.register(r'clientsurveys2024', ClientSurvey2024ViewSet, basename='clientsurveys2024')
+router.register(r'surveyors', SurveyorViewSet, basename='surveyors')
+router.register(r'surveys', SurveyViewSet, basename='surveys')
+router.register(r'zipcodesurveys', ZipcodeSurveyViewSet, basename='zipcodesurveys')
 
 urlpatterns = [
     path('add-client/', add_client, name='add_client'),
