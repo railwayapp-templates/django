@@ -43,8 +43,8 @@ class ClientSurvey2024Admin(ModelAdmin):
     # Warn before leaving unsaved changes in changeform
     warn_unsaved_form = True  # Default: False
 
-    list_display = ["surveyor", "zipcode"]
-    search_fields = ["surveyor", "zipcode"]
-    list_filter = ["surveyor", "zipcode"]
-    list_display_links = ["surveyor", "zipcode"]
+    list_display = ["surveyor", "zipcode", "date"]
+    search_fields = ["surveyor", "zipcode", "date"]
+    list_filter = ["surveyor", "zipcode", "date"]
+    list_display_links = ["surveyor", "zipcode", "date"]
     autocomplete_fields = ["surveyor", "zipcode"]

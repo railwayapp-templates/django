@@ -36,7 +36,7 @@ def get_or_create_zipcode(zipcode):
     if response.status_code == 200 and response.json():
         return response.json()[0]['id']
     else:
-        response = requests.post(ZIPCODE_SURVEY_API_URL, data={'search': zipcode}, auth=HTTPBasicAuth(USERNAME, PASSWORD))
+        response = requests.post(ZIPCODE_SURVEY_API_URL, data={'zipcode': zipcode}, auth=HTTPBasicAuth(USERNAME, PASSWORD))
         if response.status_code == 201:
             return response.json()['id']
         else:
