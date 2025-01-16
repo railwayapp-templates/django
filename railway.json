@@ -4,7 +4,7 @@
         "builder": "NIXPACKS"
     },
     "deploy": {
-        "startCommand": "python manage.py migrate && python manage.py collectstatic --noinput && gunicorn mysite.wsgi",
+        "startCommand": "python manage.py migrate && python manage.py collectstatic --noinput && gunicorn mysite.wsgi --bind 0.0.0.0:$PORT",
         "restartPolicyType": "ON_FAILURE",
         "restartPolicyMaxRetries": 10
     }
