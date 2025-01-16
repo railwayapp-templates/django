@@ -4,6 +4,6 @@ from . import views
 
 urlpatterns = [
     # ...existing code...
-    path('ola/', views.hello_page, name='hello'),
+    path('', views.hello_page, name='hello'),
     # ...existing code...
 ]
